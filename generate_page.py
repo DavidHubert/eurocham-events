@@ -124,7 +124,17 @@ EVENT_TEMPLATE = """<div class="event">
 """
 
 
+def filter_future(events: list[dict]) -> list[dict]:
+    """Keep only events dated today or later. Events with no parseable
+    date are dropped from the main page too, since we can't confirm
+    they're upcoming — same 'exclude rather than guess' rule used for
+    unclear locations."""
+    today = datetime.now(timezone.utc).date().isoformat()
+    return [e for e in events if e.get("date_parsed") and e["date_parsed"] >= today]
+
+
 def render_html(events: list[dict]) -> str:
+    events = filter_future(events)
     events_sorted = sorted(events, key=lambda e: e.get("date_parsed") or "9999")
     if not events_sorted:
         events_html = '<p class="empty">No upcoming Bay Area events found this week.</p>'
