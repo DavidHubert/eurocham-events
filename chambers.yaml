@@ -39,7 +39,7 @@ chambers:
 
   - name: California Spain Chamber of Commerce
     homepage: https://www.californiaspainchamber.org
-    events_url: https://www.californiaspainchamber.org/events
+    events_url: https://www.californiaspainchamber.org/events-chamber/
     platform: auto
 
   - name: CzechInvest
@@ -54,7 +54,7 @@ chambers:
 
   - name: French American Chamber of Commerce San Francisco (FACCSF)
     homepage: https://www.facccalifornia.com
-    events_url: https://www.facccalifornia.com/events
+    events_url: https://www.facccalifornia.com/events/events-calendar.html
     platform: auto
 
   - name: German American Business Association of California (GABA)
@@ -99,7 +99,7 @@ chambers:
 
   - name: Swedish American Chamber of Commerce (SACC-SF/SV)
     homepage: https://www.sacc-sf.org
-    events_url: https://www.sacc-sf.org/events
+    events_url: https://www.sacc-sf.org/events/upcoming-events
     platform: auto
 
   - name: Swiss-American Chamber of Commerce
@@ -109,5 +109,5 @@ chambers:
 
   - name: US-Polish Trade Council (USPTC)
     homepage: https://www.usptc.org
-    events_url: https://www.usptc.org/events
+    events_url: https://usptc.org/event/
     platform: auto
