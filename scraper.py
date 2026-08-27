@@ -485,6 +485,16 @@ def strategy_custom_growthzone(chamber_name: str, events_url: str) -> list[Event
         tmatch = _GROWTHZONE_TIME.search(context)
         time_str = tmatch.group(0) if tmatch else ""
 
+        # The listing page's short description usually doesn't state the
+        # actual venue/address — that only appears on the event's own
+        # detail page. Fetch it so location classification has something
+        # real to match against, instead of just the generic blurb text.
+        location_raw = context[:300]
+        detail_resp = fetch(url)
+        if detail_resp:
+            detail_soup = BeautifulSoup(detail_resp.text, "html.parser")
+            location_raw += " " + detail_soup.get_text(" ", strip=True)[:1000]
+
         events.append(Event(
             chamber=chamber_name,
             title=title,
@@ -492,7 +502,7 @@ def strategy_custom_growthzone(chamber_name: str, events_url: str) -> list[Event
             date_parsed=candidate.date().isoformat(),
             url=url,
             source_strategy="custom_growthzone",
-            location_raw=context[:300],
+            location_raw=location_raw,
         ))
     return events
 
@@ -576,9 +586,18 @@ def main():
         # Classify region for each event using title + whatever location
         # text the strategy managed to capture.
         for e in events:
-            region, match = classify_location(e.title, e.location_raw)
-            e.region = region
-            e.region_match = match
+            if chamber.get("assume_bay_area"):
+                # Only set for chambers where this has been explicitly
+                # confirmed (e.g. GABA's norcal-events page is Northern
+                # California only) — see the "assume_bay_area: true" flag
+                # in chambers.yaml. This is per-chamber, not per-strategy:
+                # another chamber that happens to also run on GrowthZone
+                # but covers a wider area must NOT get this override.
+                e.region, e.region_match = "bay_area", "assume_bay_area (confirmed in chambers.yaml)"
+            else:
+                region, match = classify_location(e.title, e.location_raw)
+                e.region = region
+                e.region_match = match
 
         bay_or_virtual = sum(1 for e in events if e.region in ("bay_area", "virtual"))
         other = len(events) - bay_or_virtual
