@@ -108,6 +108,126 @@
     "source_detail": "Website"
   },
   {
+    "chamber": "Swiss-American Chamber of Commerce",
+    "title": "How to Accept Custom Donation Amounts in WordPress with Stripe",
+    "date_raw": "Thu, 06 Aug 2026 09:33:11 +0000",
+    "date_parsed": "2026-08-06",
+    "location_raw": "<p>Want visitors to set their own donation amount? Here's how to build a pay-what-you-want Stripe form in WordPress with WP Full Pay, fees included.</p>\n<p>The post <a href=\"https://saccsf.com/2026/08/06/how-to-accept-custom-donation-amounts-in-wordpress-with-stripe/\">How to Accept Custom Donation A",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://saccsf.com/2026/08/06/how-to-accept-custom-donation-amounts-in-wordpress-with-stripe/",
+    "source_strategy": "rss_feed",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "Swiss-American Chamber of Commerce",
+    "title": "How to Display Multiple RSS Feeds on One Page in WordPress",
+    "date_raw": "Fri, 07 Aug 2026 09:54:00 +0000",
+    "date_parsed": "2026-08-07",
+    "location_raw": "<p>Want to display multiple RSS feeds on one page in WordPress? This guide builds a self-updating news wall or niche digest with the free Feedzy plugin.</p>\n<p>The post <a href=\"https://saccsf.com/2026/08/07/how-to-display-multiple-rss-feeds-on-one-page-in-wordpress/\">How to Display Multiple RSS Fee",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://saccsf.com/2026/08/07/how-to-display-multiple-rss-feeds-on-one-page-in-wordpress/",
+    "source_strategy": "rss_feed",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "Swiss-American Chamber of Commerce",
+    "title": "Programmatic SEO in WordPress: Local Landing Pages From One Dataset (With MPG)",
+    "date_raw": "Mon, 10 Aug 2026 10:08:02 +0000",
+    "date_parsed": "2026-08-10",
+    "location_raw": "<p>Learn how to generate local SEO landing pages in WordPress from one CSV with MPG: templates, placeholders, free-tier limits, and the thin-content risks to avoid.</p>\n<p>The post <a href=\"https://saccsf.com/2026/08/10/programmatic-seo-in-wordpress-local-landing-pages-from-one-dataset-with-mpg/\">Pr",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://saccsf.com/2026/08/10/programmatic-seo-in-wordpress-local-landing-pages-from-one-dataset-with-mpg/",
+    "source_strategy": "rss_feed",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "Swiss-American Chamber of Commerce",
+    "title": "How to Get a 90+ PageSpeed Score in WordPress for Free (Measured)",
+    "date_raw": "Tue, 11 Aug 2026 10:14:30 +0000",
+    "date_parsed": "2026-08-11",
+    "location_raw": "<p>Want a 90+ PageSpeed score in WordPress for free? This guide walks through the free stack: caching, image optimization, theme discipline, with measured before and after results.</p>\n<p>The post <a href=\"https://saccsf.com/2026/08/11/how-to-get-a-90-pagespeed-score-in-wordpress-for-free-measured/\"",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://saccsf.com/2026/08/11/how-to-get-a-90-pagespeed-score-in-wordpress-for-free-measured/",
+    "source_strategy": "rss_feed",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "Swiss-American Chamber of Commerce",
+    "title": "WooCommerce Product Customization: Sell Personalized Products (Free)",
+    "date_raw": "Wed, 12 Aug 2026 10:52:34 +0000",
+    "date_parsed": "2026-08-12",
+    "location_raw": "<p>Want to sell engraved or personalized products in WooCommerce? This guide builds a customizable product with free PPOM: text fields, paid options, conditional logic.</p>\n<p>The post <a href=\"https://saccsf.com/2026/08/12/woocommerce-product-customization-sell-personalized-products-free/\">WooComme",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://saccsf.com/2026/08/12/woocommerce-product-customization-sell-personalized-products-free/",
+    "source_strategy": "rss_feed",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "Swiss-American Chamber of Commerce",
+    "title": "WordPress AI Connectors: A Developer\u2019s Guide to the 7.0 AI Client",
+    "date_raw": "Thu, 13 Aug 2026 10:53:25 +0000",
+    "date_parsed": "2026-08-13",
+    "location_raw": "<p>WordPress 7.0's AI connectors and wp_ai_client_prompt() give any plugin a provider-agnostic way to talk to LLMs. Learn the API and build a working plugin.</p>\n<p>The post <a href=\"https://saccsf.com/2026/08/13/wordpress-ai-connectors-a-developers-guide-to-the-7-0-ai-client/\">WordPress AI Connecto",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://saccsf.com/2026/08/13/wordpress-ai-connectors-a-developers-guide-to-the-7-0-ai-client/",
+    "source_strategy": "rss_feed",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "Swiss-American Chamber of Commerce",
+    "title": "AI Chatbot Trained on Your WordPress Content: Setup Guide (RAG Explained)",
+    "date_raw": "Fri, 14 Aug 2026 10:54:34 +0000",
+    "date_parsed": "2026-08-14",
+    "location_raw": "<p>Want a WordPress AI chatbot that answers from your own posts and pages? Learn how RAG actually works, then set up Hyve Lite free, limits and all.</p>\n<p>The post <a href=\"https://saccsf.com/2026/08/14/ai-chatbot-trained-on-your-wordpress-content-setup-guide-rag-explained/\">AI Chatbot Trained on Y",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://saccsf.com/2026/08/14/ai-chatbot-trained-on-your-wordpress-content-setup-guide-rag-explained/",
+    "source_strategy": "rss_feed",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "Swiss-American Chamber of Commerce",
+    "title": "AI Page Builder for Gutenberg: Build Real Pages with Otter Blocks 3.2",
+    "date_raw": "Mon, 17 Aug 2026 10:58:45 +0000",
+    "date_parsed": "2026-08-17",
+    "location_raw": "<p>Want an AI page builder in Gutenberg? Otter Blocks 3.2 generates full sections and pages from a simple prompt. Learn the setup, the catch, and what free vs Pro gets you.</p>\n<p>The post <a href=\"https://saccsf.com/2026/08/17/ai-page-builder-for-gutenberg-build-real-pages-with-otter-blocks-3-2/\">A",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://saccsf.com/2026/08/17/ai-page-builder-for-gutenberg-build-real-pages-with-otter-blocks-3-2/",
+    "source_strategy": "rss_feed",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "Swiss-American Chamber of Commerce",
+    "title": "How to Sell Courses in WordPress Without WooCommerce",
+    "date_raw": "Tue, 18 Aug 2026 11:00:35 +0000",
+    "date_parsed": "2026-08-18",
+    "location_raw": "<p>Selling courses in WordPress? You might not need WooCommerce at all. This guide compares native LMS checkout against WooCommerce so you can pick the right setup.</p>\n<p>The post <a href=\"https://saccsf.com/2026/08/18/how-to-sell-courses-in-wordpress-without-woocommerce/\">How to Sell Courses in Wo",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://saccsf.com/2026/08/18/how-to-sell-courses-in-wordpress-without-woocommerce/",
+    "source_strategy": "rss_feed",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "Swiss-American Chamber of Commerce",
+    "title": "How to Refresh Old Blog Posts for SEO (A Workflow That Works)",
+    "date_raw": "Wed, 19 Aug 2026 11:02:41 +0000",
+    "date_parsed": "2026-08-19",
+    "location_raw": "<p>Old posts losing traffic? Learn a simple workflow to refresh old blog posts for SEO, plus a free tool that tells you exactly what to fix first.</p>\n<p>The post <a href=\"https://saccsf.com/2026/08/19/how-to-refresh-old-blog-posts-for-seo-a-workflow-that-works/\">How to Refresh Old Blog Posts for SE",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://saccsf.com/2026/08/19/how-to-refresh-old-blog-posts-for-seo-a-workflow-that-works/",
+    "source_strategy": "rss_feed",
+    "source_detail": "Website"
+  },
+  {
     "chamber": "German American Business Association of California (GABA)",
     "title": "GABA Sommerfest 2026",
     "date_raw": "August 30, 2026 3:00 PM - 6:00 PM",
@@ -129,6 +249,30 @@
     "region_match": "san francisco",
     "url": "https://www.daccncal.com/events",
     "source_strategy": "jsonld_event",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "French American Chamber of Commerce San Francisco (FACCSF)",
+    "title": "Welcome Back Cocktail San Francisco 2026",
+    "date_raw": "10 Sep 2026",
+    "date_parsed": "2026-09-10",
+    "location_raw": "10 Sep 2026 San Francisco area Networking R\u00e9sidence de France San Francisco\n                            \n                            \n                                \u00a0\u2022\u00a0\n                            \n                            \n                                San Francisco Welcome Back Cocktail San Francisco 2026 Reconnect. Refresh. Reengage.",
+    "region": "bay_area",
+    "region_match": "san francisco",
+    "url": "https://www.facccalifornia.com/events/events-calendar/e/event/welcome-back-cocktail-san-francisco-2026.html",
+    "source_strategy": "custom_facc",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "French American Chamber of Commerce San Francisco (FACCSF)",
+    "title": "2026 Fall European Networking Evening",
+    "date_raw": "24 Sep 2026",
+    "date_parsed": "2026-09-24",
+    "location_raw": "24 Sep 2026 San Francisco area Networking SAP\n                            \n                            \n                                \u00a0\u2022\u00a0\n                            \n                            \n                                San Francisco 2026 Fall European Networking Evening Want to (re)connect after the Summer break with the dynamic European community of the Bay Area?",
+    "region": "bay_area",
+    "region_match": "san francisco",
+    "url": "https://www.facccalifornia.com/events/events-calendar/e/event/2026-fall-european-networking-evening.html",
+    "source_strategy": "custom_facc",
     "source_detail": "Website"
   },
   {
@@ -189,6 +333,18 @@
     "region_match": "san francisco",
     "url": "https://www.gaccwest.com/us/events?event_hub_filter%5Bcategory%5D=7&event_hub_filter%5ByearFilter%5D=all",
     "source_strategy": "custom_gaccwest",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "French American Chamber of Commerce San Francisco (FACCSF)",
+    "title": "French Gastronomy Festival 2027",
+    "date_raw": "3 Apr 2027",
+    "date_parsed": "2027-04-03",
+    "location_raw": "3 Apr 2027 San Francisco area Fair & Exhibition Lyc\u00e9e fran\u00e7ais de San Francisco\n                            \n                            \n                                \u00a0\u2022\u00a0\n                            \n                            \n                                San Francisco French Gastronomy Festival 2027 Save the Date for the 7th edition of the French Gastronomy Festival",
+    "region": "bay_area",
+    "region_match": "san francisco",
+    "url": "https://www.facccalifornia.com/events/events-calendar/e/event/french-gastronomy-festival-2027.html",
+    "source_strategy": "custom_facc",
     "source_detail": "Website"
   },
   {
