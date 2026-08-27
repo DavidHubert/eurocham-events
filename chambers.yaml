@@ -95,8 +95,8 @@ chambers:
 
   - name: Slovak Pro
     homepage: https://www.slovakpro.org
-    events_url: https://www.slovakpro.org/events
-    platform: auto
+    events_url: https://www.slovakpro.org/luma
+    platform: custom_luma
 
   - name: Swedish American Chamber of Commerce (SACC-SF/SV)
     homepage: https://www.sacc-sf.org
