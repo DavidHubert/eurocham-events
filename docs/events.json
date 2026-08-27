@@ -108,6 +108,18 @@
     "source_detail": "Website"
   },
   {
+    "chamber": "German American Business Association of California (GABA)",
+    "title": "GABA Sommerfest 2026",
+    "date_raw": "August 30, 2026 3:00 PM - 6:00 PM",
+    "date_parsed": "2026-08-30",
+    "location_raw": "SUN August 30 GABA Sommerfest 2026 3:00 PM - 6:00 PM It's time for our ever popular GABA Sommerfest! Bring your friends & family or come by yourself. Meet new people and get to know the German-American business community in the casual atmosphere of a picnic in the park! Register GABA Sommerfest 2026    - GABA Northern California Skip to content Events Upcoming Events Past Events GABA Gala Global Business Outlook Transatlantic Technology Summit Sponsorship Volunteering Newsletter Sign Up Programs Focus Topics Founders\u2019 Hub GABA Next Gen Membership Company Member Directory Company Individual About News Team Experts Advisory Board GABA Awardees Volunteering Contact Resources Job Board Partners Useful Links FAQ GABA Hub Login GABA Hub Information Create New Account Open mobile menu Close mobile menu GABA Sommerfest 2026 Back to Search GABA Sommerfest 2026 Sunday, August 30, 2026 (3:00 PM - 6:00 PM)\r\n                        ( PDT ) Description It\u2019s time for our ever-popular GABA Sommerfest! This year, we\u2019re excited to partner with the German International School of Silicon Valley (GISSV) to bring the community together. Bring your friends and family\u2014or come solo\u2014and enjoy meeting new people in the relaxed, picnic-style atmosphere of a summer afternoon in the park! ",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://members.gaba-network.org/norcal-events/Details/gaba-sommerfest-2026-1765693?sourceTypeId=Website",
+    "source_strategy": "custom_growthzone",
+    "source_detail": "Website"
+  },
+  {
     "chamber": "Danish American Chamber of Commerce (DACC)",
     "title": "Odoo Experience",
     "date_raw": "2026-09-02T10:00:00-07:00",
@@ -117,6 +129,18 @@
     "region_match": "san francisco",
     "url": "https://www.daccncal.com/events",
     "source_strategy": "jsonld_event",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "German American Business Association of California (GABA)",
+    "title": "Fall European Networking 2026",
+    "date_raw": "September 24, 2026 6:00 PM - 8:30 PM",
+    "date_parsed": "2026-09-24",
+    "location_raw": "THU September 24 Fall European Networking 2026 6:00 PM - 8:30 PM After the summer break, come and (re)connect with professionals from different European countries!    The German American Business Association of California, British American Business Council Northern California, and French American Ch Fall European Networking 2026    - GABA Northern California Skip to content Events Upcoming Events Past Events GABA Gala Global Business Outlook Transatlantic Technology Summit Sponsorship Volunteering Newsletter Sign Up Programs Focus Topics Founders\u2019 Hub GABA Next Gen Membership Company Member Directory Company Individual About News Team Experts Advisory Board GABA Awardees Volunteering Contact Resources Job Board Partners Useful Links FAQ GABA Hub Login GABA Hub Information Create New Account Open mobile menu Close mobile menu Fall European Networking 2026 Back to Search Fall European Networking 2026 Thursday, September 24, 2026 (6:00 PM - 8:30 PM)\r\n                        ( PDT ) Description After the summer break, come and (re)connect with professionals from different European countries! The German American Business Association of California, British American Business Council Northern California, and French American Chamber of Commerce San Francisco, in cooperation with many Europ",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://members.gaba-network.org/norcal-events/Details/fall-european-networking-2026-1765752?sourceTypeId=Website",
+    "source_strategy": "custom_growthzone",
     "source_detail": "Website"
   },
   {
