@@ -618,6 +618,7 @@ def _extract_luma_date(event_html: str) -> Optional[str]:
 def strategy_custom_luma(chamber_name: str, events_url: str) -> list[Event]:
     resp = fetch(events_url)
     if not resp:
+        print("    [luma debug] could not fetch listing page at all", file=sys.stderr)
         return []
     soup = BeautifulSoup(resp.text, "html.parser")
 
@@ -625,16 +626,23 @@ def strategy_custom_luma(chamber_name: str, events_url: str) -> list[Event]:
     events = []
     seen_urls = set()
 
-    for a in soup.find_all("a", href=True):
+    all_links = soup.find_all("a", href=True)
+    candidate_links = 0
+    links_with_heading = 0
+    dates_found = 0
+
+    for a in all_links:
         href = a["href"]
         if not href.startswith("/") or any(href.startswith(p) for p in skip_paths):
             continue
+        candidate_links += 1
         heading = a.find(["h1", "h2", "h3", "h4"])
         if not heading:
             continue
         title = heading.get_text(strip=True)
         if not title:
             continue
+        links_with_heading += 1
         url = urljoin(events_url, href)
         if url in seen_urls:
             continue
@@ -652,6 +660,7 @@ def strategy_custom_luma(chamber_name: str, events_url: str) -> list[Event]:
             # rather than guess. Shows up in the "FAILED"-adjacent
             # count so it's visible something needs a closer look.
             continue
+        dates_found += 1
 
         events.append(Event(
             chamber=chamber_name,
@@ -661,7 +670,11 @@ def strategy_custom_luma(chamber_name: str, events_url: str) -> list[Event]:
             url=url,
             source_strategy="custom_luma",
             location_raw=location_raw[:300],
+
         ))
+    print(f"    [luma debug] total links={len(all_links)}, candidate links={candidate_links}, "
+          f"with heading/title={links_with_heading}, dates successfully extracted={dates_found}",
+          file=sys.stderr)
     return events
 
 
