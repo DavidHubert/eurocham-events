@@ -80,7 +80,7 @@ chambers:
 
   - name: Open Austria
     homepage: https://www.advantageaustria.org/us/Startseite.en.html
-    events_url: https://www.advantageaustria.org/us/veranstaltungen/index.en.html
+    events_url: https://www.advantageaustria.org/us/events/next/en
     platform: auto
 
   - name: Portugal's Trade & Investment Agency (AICEP)
@@ -107,6 +107,7 @@ chambers:
     homepage: https://www.saccsf.com
     events_url: https://www.saccsf.com/events
     platform: auto
+    assume_bay_area: true
 
   - name: US-Polish Trade Council (USPTC)
     homepage: https://www.usptc.org
