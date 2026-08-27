@@ -567,6 +567,104 @@ def strategy_custom_facc(chamber_name: str, events_url: str) -> list[Event]:
     return events
 
 
+# ---------- Strategy: custom rule for Luma-hosted calendars (Slovak Pro) ----------
+# Luma (luma.com) is a heavy JavaScript app, unlike everything else this
+# scraper handles — a plain HTTP fetch only sees the server-rendered
+# shell. What IS reliably present in that shell: each event's title,
+# host, and city/state, since Luma renders those for SEO. The exact date
+# is NOT reliably present in the calendar listing itself — this strategy
+# visits each event's own page and tries a few known ways sites like this
+# expose structured data (JSON-LD, a Next.js data blob) before falling
+# back to skipping the event rather than guessing a date. This is more
+# experimental than the other custom strategies — worth checking its
+# report.txt output the first few runs.
+
+def _extract_luma_date(event_html: str) -> Optional[str]:
+    """Best-effort date extraction from a Luma event page. Tries, in
+    order: JSON-LD Event startDate, a Next.js __NEXT_DATA__ blob, then
+    gives up (returns None) rather than guessing."""
+    soup = BeautifulSoup(event_html, "html.parser")
+
+    for script in soup.find_all("script", type="application/ld+json"):
+        try:
+            data = json.loads(script.string or "")
+        except (ValueError, TypeError):
+            continue
+        blocks = data if isinstance(data, list) else [data]
+        for block in blocks:
+            if isinstance(block, dict) and block.get("@type") == "Event":
+                start = block.get("startDate")
+                if start:
+                    return try_parse_date(start)
+
+    next_data = soup.find("script", id="__NEXT_DATA__")
+    if next_data and next_data.string:
+        try:
+            data = json.loads(next_data.string)
+        except (ValueError, TypeError):
+            data = None
+        if data:
+            # Walk the blob looking for a plausible start-time key —
+            # Luma's internal field names aren't publicly documented,
+            # so this checks a few likely candidates.
+            text_blob = json.dumps(data)
+            m = re.search(r'"start_at"\s*:\s*"([^"]+)"', text_blob)
+            if m:
+                return try_parse_date(m.group(1))
+
+    return None
+
+
+def strategy_custom_luma(chamber_name: str, events_url: str) -> list[Event]:
+    resp = fetch(events_url)
+    if not resp:
+        return []
+    soup = BeautifulSoup(resp.text, "html.parser")
+
+    skip_paths = {"/discover", "/pricing", "/signin", "/app", "/user", "/map"}
+    events = []
+    seen_urls = set()
+
+    for a in soup.find_all("a", href=True):
+        href = a["href"]
+        if not href.startswith("/") or any(href.startswith(p) for p in skip_paths):
+            continue
+        heading = a.find(["h1", "h2", "h3", "h4"])
+        if not heading:
+            continue
+        title = heading.get_text(strip=True)
+        if not title:
+            continue
+        url = urljoin(events_url, href)
+        if url in seen_urls:
+            continue
+        seen_urls.add(url)
+
+        location_raw = a.get_text(" ", strip=True)
+
+        date_parsed = None
+        detail_resp = fetch(url)
+        if detail_resp:
+            date_parsed = _extract_luma_date(detail_resp.text)
+
+        if not date_parsed:
+            # Can't confirm this is upcoming without a date — skip
+            # rather than guess. Shows up in the "FAILED"-adjacent
+            # count so it's visible something needs a closer look.
+            continue
+
+        events.append(Event(
+            chamber=chamber_name,
+            title=title,
+            date_raw=date_parsed,
+            date_parsed=date_parsed,
+            url=url,
+            source_strategy="custom_luma",
+            location_raw=location_raw[:300],
+        ))
+    return events
+
+
 def scrape_chamber(chamber: dict) -> tuple[list[Event], str]:
     name = chamber["name"]
     homepage = chamber["homepage"]
@@ -589,6 +687,11 @@ def scrape_chamber(chamber: dict) -> tuple[list[Event], str]:
         events = strategy_custom_facc(name, events_url)
         if events:
             return events, "custom_facc"
+
+    if platform == "custom_luma":
+        events = strategy_custom_luma(name, events_url)
+        if events:
+            return events, "custom_luma"
 
     if platform == "squarespace":
         events = strategy_squarespace(name, events_url)
