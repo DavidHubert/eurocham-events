@@ -1,0 +1,113 @@
+# EuroCham member chambers — configuration for the events scraper.
+#
+# For each chamber, fill in:
+#   name:        display name
+#   homepage:    main site URL
+#   events_url:  the page that lists events (best guess below; check and correct)
+#   platform:    "squarespace" | "auto"  — set to "squarespace" if you know it is one,
+#                otherwise leave "auto" and the scraper will try to detect it.
+#
+# Entries below are pre-filled from eurocham.org/blank-1. Several events_url values
+# are best guesses (the common /events or /veranstaltungen pattern) and should be
+# checked — chamber sites change their nav often.
+
+chambers:
+  - name: American-Slovenian Club (ASC)
+    homepage: https://www.americanslovenianclub.org
+    events_url: https://www.americanslovenianclub.org/events
+    platform: auto
+
+  - name: Belgian-American Chamber of Commerce (BelCham)
+    homepage: https://www.belcham.org
+    events_url: https://www.belcham.org/events
+    platform: auto
+
+  - name: Belgian & Luxembourg Chamber of Commerce for the Western US (Belwest)
+    homepage: https://www.belwest.org
+    events_url: https://www.belwest.org/events
+    platform: squarespace
+
+  - name: British American Business Council Northern California (BABCSF)
+    homepage: https://babcsf.org
+    events_url: https://babcsf.org/events
+    platform: auto
+
+  - name: Business Association Italy America (BAIA)
+    homepage: https://www.baia-network.org
+    events_url: https://www.baia-network.org/events
+    platform: auto
+
+  - name: California Spain Chamber of Commerce
+    homepage: https://www.californiaspainchamber.org
+    events_url: https://www.californiaspainchamber.org/events
+    platform: auto
+
+  - name: CzechInvest
+    homepage: https://czechinvest.gov.cz
+    events_url: https://czechinvest.gov.cz/en/events
+    platform: auto
+
+  - name: Danish American Chamber of Commerce (DACC)
+    homepage: https://www.daccncal.com
+    events_url: https://www.daccncal.com/events
+    platform: auto
+
+  - name: French American Chamber of Commerce San Francisco (FACCSF)
+    homepage: https://www.facccalifornia.com
+    events_url: https://www.facccalifornia.com/events
+    platform: auto
+
+  - name: German American Business Association of California (GABA)
+    homepage: https://www.gaba-network.org
+    events_url: https://www.gaba-network.org/events
+    platform: auto
+
+  - name: GACC West – Representative of German Business
+    homepage: https://www.gaccwest.com
+    events_url: https://www.gaccwest.com/en/events
+    platform: custom_gaccwest
+
+  - name: Hungarian American Chamber of Commerce (HACC)
+    homepage: https://www.amhuchamber.com
+    events_url: https://www.amhuchamber.com/events
+    platform: auto
+
+  - name: Irish Network Bay Area (INBA)
+    homepage: https://irishnetworkbayarea.com
+    events_url: https://irishnetworkbayarea.com/events
+    platform: auto
+
+  - name: Open Austria
+    homepage: https://www.advantageaustria.org/us/Startseite.en.html
+    events_url: https://www.advantageaustria.org/us/veranstaltungen/index.en.html
+    platform: auto
+
+  - name: Portugal's Trade & Investment Agency (AICEP)
+    homepage: https://www.portugalglobal.pt/en
+    events_url: https://www.portugalglobal.pt/en/events
+    platform: auto
+
+  - name: Romanian-American Chamber of Commerce (RACC)
+    homepage: https://www.racc.ro
+    events_url: https://www.racc.ro/events
+    platform: auto
+
+  - name: Slovak Pro
+    homepage: https://www.slovakpro.org
+    events_url: https://www.slovakpro.org/events
+    platform: auto
+
+  - name: Swedish American Chamber of Commerce (SACC-SF/SV)
+    homepage: https://www.sacc-sf.org
+    events_url: https://www.sacc-sf.org/events
+    platform: auto
+
+  - name: Swiss-American Chamber of Commerce
+    homepage: https://www.saccsf.com
+    events_url: https://www.saccsf.com/events
+    platform: auto
+
+  - name: US-Polish Trade Council (USPTC)
+    homepage: https://www.usptc.org
+    events_url: https://www.usptc.org/events
+    platform: auto
