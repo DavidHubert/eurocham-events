@@ -59,7 +59,7 @@ chambers:
 
   - name: German American Business Association of California (GABA)
     homepage: https://www.gaba-network.org
-    events_url: https://www.gaba-network.org/events
+    events_url: https://members.gaba-network.org/norcal-events
     platform: auto
 
   - name: GACC West – Representative of German Business
