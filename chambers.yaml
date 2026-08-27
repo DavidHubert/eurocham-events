@@ -55,7 +55,7 @@ chambers:
   - name: French American Chamber of Commerce San Francisco (FACCSF)
     homepage: https://www.facccalifornia.com
     events_url: https://www.facccalifornia.com/events/events-calendar.html
-    platform: auto
+    platform: custom_facc
 
   - name: German American Business Association of California (GABA)
     homepage: https://www.gaba-network.org
