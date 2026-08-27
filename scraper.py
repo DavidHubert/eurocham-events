@@ -507,6 +507,66 @@ def strategy_custom_growthzone(chamber_name: str, events_url: str) -> list[Event
     return events
 
 
+# ---------- Strategy: custom rule for FACC California (TYPO3 CMS) ----------
+# FACC's calendar explicitly tags each event "San Francisco area" or
+# "Los Angeles area" — a much more reliable signal than guessing from a
+# venue name, so this strategy leans on that tag directly. The date badge
+# and the heading both link to the same event URL, so candidates are
+# grouped by URL and the longest link text (the real heading, not the
+# short date badge) is used as the title.
+
+_FACC_DATE = re.compile(
+    r"\b(\d{1,2})\s*(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+(\d{4})\b",
+    re.IGNORECASE,
+)
+
+
+def strategy_custom_facc(chamber_name: str, events_url: str) -> list[Event]:
+    resp = fetch(events_url)
+    if not resp:
+        return []
+    soup = BeautifulSoup(resp.text, "html.parser")
+
+    candidates: dict[str, list] = {}
+    for a in soup.find_all("a", href=True):
+        if "/events/events-calendar/e/event/" not in a["href"]:
+            continue
+        if not a.get_text(strip=True):
+            continue
+        url = urljoin(events_url, a["href"])
+        candidates.setdefault(url, []).append(a)
+
+    events = []
+    for url, tags in candidates.items():
+        best_tag = max(tags, key=lambda t: len(t.get_text(strip=True)))
+        title = best_tag.get_text(strip=True)
+
+        context = ""
+        node = best_tag
+        for _ in range(5):
+            node = node.find_parent()
+            if node is None:
+                break
+            context = node.get_text(" ", strip=True)
+            if _FACC_DATE.search(context):
+                break
+
+        m = _FACC_DATE.search(context)
+        if not m:
+            continue
+
+        events.append(Event(
+            chamber=chamber_name,
+            title=title,
+            date_raw=m.group(0),
+            date_parsed=try_parse_date(m.group(0)),
+            url=url,
+            source_strategy="custom_facc",
+            location_raw=context[:400],
+        ))
+    return events
+
+
 def scrape_chamber(chamber: dict) -> tuple[list[Event], str]:
     name = chamber["name"]
     homepage = chamber["homepage"]
@@ -524,6 +584,11 @@ def scrape_chamber(chamber: dict) -> tuple[list[Event], str]:
         events = strategy_custom_growthzone(name, events_url)
         if events:
             return events, "custom_growthzone"
+
+    if platform == "custom_facc":
+        events = strategy_custom_facc(name, events_url)
+        if events:
+            return events, "custom_facc"
 
     if platform == "squarespace":
         events = strategy_squarespace(name, events_url)
