@@ -72,42 +72,6 @@
     "source_detail": "Website"
   },
   {
-    "chamber": "Irish Network Bay Area (INBA)",
-    "title": "St. Patrick\u2019s Day at the Olympic Club with Daniel Whelan",
-    "date_raw": "Tue, 18 Mar 2025 09:52:00 +0000",
-    "date_parsed": "2025-03-18",
-    "location_raw": "Daniel Whelan and his mother Ann Marie joined us at the Olympic Club for our annual St. Patrick\u2019s Day lunch. Paddy Coyne from SF Glens sat down with Dan to talk immigrating, football and what he misses about Ireland.",
-    "region": "bay_area",
-    "region_match": "sf",
-    "url": "https://irishnetworkbayarea.com/stpats-2025-danielwhelan/",
-    "source_strategy": "rss_feed",
-    "source_detail": "Website"
-  },
-  {
-    "chamber": "Irish Network Bay Area (INBA)",
-    "title": "Making it in America : Healthcare Innovation",
-    "date_raw": "Fri, 19 Sep 2025 10:23:00 +0000",
-    "date_parsed": "2025-09-19",
-    "location_raw": "On September 18th, the Irish community in San Francisco gathered for the second event in our Making it in America series, this time focused on Innovating in Healthcare. The evening brought together leaders from across health, tech, and research to explore how innovation is shaping the future of care",
-    "region": "bay_area",
-    "region_match": "san francisco",
-    "url": "https://irishnetworkbayarea.com/making-it-in-america-healthcare-innovation/",
-    "source_strategy": "rss_feed",
-    "source_detail": "Website"
-  },
-  {
-    "chamber": "Irish Network Bay Area (INBA)",
-    "title": "Agentic AI Comes to Life: Lessons from a Sold-Out Night with the Irish Network Bay Area",
-    "date_raw": "Tue, 19 May 2026 17:04:24 +0000",
-    "date_parsed": "2026-05-19",
-    "location_raw": "Last week a packed room at the Irish Network Bay Area&#8217;s sold-out event on Agentic AI for Workplace Productivity got a front-row seat to what may be the most consequential shift in how knowledge work gets done since the arrival of the internet.&#160; Huge thanks to Margaret Laffan, Cloud Growth",
-    "region": "bay_area",
-    "region_match": "bay area",
-    "url": "https://irishnetworkbayarea.com/agentic-ai-comes-to-life-lessons-from-a-sold-out-night-with-the-irish-network-bay-area/",
-    "source_strategy": "rss_feed",
-    "source_detail": "Website"
-  },
-  {
     "chamber": "Swiss-American Chamber of Commerce",
     "title": "How to Accept Custom Donation Amounts in WordPress with Stripe",
     "date_raw": "Thu, 06 Aug 2026 09:33:11 +0000",
@@ -241,18 +205,6 @@
   },
   {
     "chamber": "French American Chamber of Commerce San Francisco (FACCSF)",
-    "title": "Welcome Back Cocktail San Francisco 2026",
-    "date_raw": "10 Sep 2026",
-    "date_parsed": "2026-09-10",
-    "location_raw": "10 Sep 2026 San Francisco area Networking R\u00e9sidence de France San Francisco\n                            \n                            \n                                \u00a0\u2022\u00a0\n                            \n                            \n                                San Francisco Welcome Back Cocktail San Francisco 2026 Reconnect. Refresh. Reengage.",
-    "region": "bay_area",
-    "region_match": "san francisco",
-    "url": "https://www.facccalifornia.com/events/events-calendar/e/event/welcome-back-cocktail-san-francisco-2026.html",
-    "source_strategy": "custom_facc",
-    "source_detail": "Website"
-  },
-  {
-    "chamber": "French American Chamber of Commerce San Francisco (FACCSF)",
     "title": "2026 Fall European Networking Evening",
     "date_raw": "24 Sep 2026",
     "date_parsed": "2026-09-24",
@@ -276,15 +228,27 @@
     "source_detail": "Website"
   },
   {
-    "chamber": "GACC West \u2013 Representative of German Business",
-    "title": "SF Tech Week \u2013 Silicon Valley AI Launchpad",
-    "date_raw": "10/04/2026",
-    "date_parsed": "2026-10-04",
-    "location_raw": "10/04/2026 SF Tech Week \u2013 Silicon Valley AI Launchpad Oct 5 \u2013\u00a08, 2026 | \n\nA five-day immersion in Silicon Valley \u2013 for German Enterprise AI startups making the leap into the US market during SF Tech Week. TRAINING & EDUCATION",
+    "chamber": "German American Business Association of California (GABA)",
+    "title": "German Day in Golden Gate Park 2026",
+    "date_raw": "September 27, 2026 11:00 AM - 4:00 PM",
+    "date_parsed": "2026-09-27",
+    "location_raw": "SUN September 27 German Day in Golden Gate Park 2026 11:00 AM - 4:00 PM Celebrate German language, culture, and music!       Please join us for German Day in Golden Gate Park 2024, where a variety of San Francisco Bay Area German organizations come together to celebrate and ... German Day in Golden Gate Park 2026    - GABA Northern California Skip to content Events Upcoming Events Past Events GABA Gala Global Business Outlook Transatlantic Technology Summit Sponsorship Volunteering Newsletter Sign Up Programs Focus Topics Founders\u2019 Hub GABA Next Gen Membership Company Member Directory Company Individual About News Team Experts Advisory Board GABA Awardees Volunteering Contact Resources Job Board Partners Useful Links FAQ GABA Hub Login GABA Hub Information Create New Account Open mobile menu Close mobile menu German Day in Golden Gate Park 2026 Back to Search German Day in Golden Gate Park 2026 Sunday, September 27, 2026 (11:00 AM - 4:00 PM)\r\n                        ( PDT ) Description Celebrate German language, culture, and music! GABA is proud to support German Day in Golden Gate Park 2026 , where a variety of San Francisco Bay Area German organizations celebrate and promote German language, culture and music. The event will take place on Sunday, September ",
     "region": "bay_area",
-    "region_match": "sf",
-    "url": "https://www.gaccwest.com/us/events?event_hub_filter%5Bcategory%5D=20&event_hub_filter%5ByearFilter%5D=all",
-    "source_strategy": "custom_gaccwest",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://members.gaba-network.org/norcal-events/Details/german-day-in-golden-gate-park-2026-1921472?sourceTypeId=Website",
+    "source_strategy": "custom_growthzone",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "German American Business Association of California (GABA)",
+    "title": "GABA Founders' Hub: Advisor Roundtable",
+    "date_raw": "October 13, 2026 8:00 AM - 9:00 AM",
+    "date_parsed": "2026-10-13",
+    "location_raw": "TUE October 13 GABA Founders' Hub: Advisor Roundtable 8:00 AM - 9:00 AM Founders' Hub: Advisor Roundtable Register GABA Founders' Hub: Advisor Roundtable    - GABA Northern California Skip to content Events Upcoming Events Past Events GABA Gala Global Business Outlook Transatlantic Technology Summit Sponsorship Volunteering Newsletter Sign Up Programs Focus Topics Founders\u2019 Hub GABA Next Gen Membership Company Member Directory Company Individual About News Team Experts Advisory Board GABA Awardees Volunteering Contact Resources Job Board Partners Useful Links FAQ GABA Hub Login GABA Hub Information Create New Account Open mobile menu Close mobile menu GABA Founders' Hub: Advisor Roundtable Back to Search GABA Founders' Hub: Advisor Roundtable Tuesday, October 13, 2026 (8:00 AM - 9:00 AM)\r\n                        ( PDT ) Description Join fellow GABA members for a dynamic Advisor Roundtable , connecting service providers who support the German-American start-up ecosystem . This interactive session brings together professionals from across key sectors \u2014 including legal, accounting, banking & finance, ",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://members.gaba-network.org/norcal-events/Details/gaba-founders-hub-advisor-roundtable-1921432?sourceTypeId=Website",
+    "source_strategy": "custom_growthzone",
     "source_detail": "Website"
   },
   {
@@ -346,25 +310,5 @@
     "url": "https://www.facccalifornia.com/events/events-calendar/e/event/french-gastronomy-festival-2027.html",
     "source_strategy": "custom_facc",
     "source_detail": "Website"
-  },
-  {
-    "chamber": "babcsf",
-    "title": "Join the British American Business Council Northern California, the French American Chamber of Commerce San Francisco, and the German American Business Association, together with E",
-    "date_raw": "Thursday, September 24th, 2026",
-    "date_parsed": "2026-09-24",
-    "location_raw": "SAP, 135 Townsend Street, San Francisco, CA 94107 United States",
-    "region": "bay_area",
-    "url": "",
-    "source_detail": "Newsletter"
-  },
-  {
-    "chamber": "babcsf",
-    "title": "After the summer break, come and (re)connect with professionals from different European countries! \ufeff",
-    "date_raw": "Thursday, September 24th, 2026",
-    "date_parsed": "2026-09-24",
-    "location_raw": "SAP, 135 Townsend Street, San Francisco, CA 94107 United States",
-    "region": "bay_area",
-    "url": "",
-    "source_detail": "Newsletter"
   }
 ]
