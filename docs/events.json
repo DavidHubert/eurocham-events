@@ -240,42 +240,6 @@
     "source_detail": "Website"
   },
   {
-    "chamber": "French American Chamber of Commerce San Francisco (FACCSF)",
-    "title": "2026 Fall European Networking Evening",
-    "date_raw": "24 Sep 2026",
-    "date_parsed": "2026-09-24",
-    "location_raw": "24 Sep 2026 San Francisco area Networking SAP\n                            \n                            \n                                \u00a0\u2022\u00a0\n                            \n                            \n                                San Francisco 2026 Fall European Networking Evening Want to (re)connect after the Summer break with the dynamic European community of the Bay Area?",
-    "region": "bay_area",
-    "region_match": "san francisco",
-    "url": "https://www.facccalifornia.com/events/events-calendar/e/event/2026-fall-european-networking-evening.html",
-    "source_strategy": "custom_facc",
-    "source_detail": "Website"
-  },
-  {
-    "chamber": "German American Business Association of California (GABA)",
-    "title": "Fall European Networking 2026",
-    "date_raw": "September 24, 2026 6:00 PM - 8:30 PM",
-    "date_parsed": "2026-09-24",
-    "location_raw": "THU September 24 Fall European Networking 2026 6:00 PM - 8:30 PM After the summer break, come and (re)connect with professionals from different European countries!    The German American Business Association of California, British American Business Council Northern California, and French American Ch Fall European Networking 2026    - GABA Northern California Skip to content Events Upcoming Events Past Events GABA Gala Global Business Outlook Transatlantic Technology Summit Sponsorship Volunteering Newsletter Sign Up Programs Focus Topics Founders\u2019 Hub GABA Next Gen Membership Company Member Directory Company Individual About News Team Experts Advisory Board GABA Awardees Volunteering Contact Resources Job Board Partners Useful Links FAQ GABA Hub Login GABA Hub Information Create New Account Open mobile menu Close mobile menu Fall European Networking 2026 Back to Search Fall European Networking 2026 Thursday, September 24, 2026 (6:00 PM - 8:30 PM)\r\n                        ( PDT ) Description After the summer break, come and (re)connect with professionals from different European countries! The German American Business Association of California, British American Business Council Northern California, and French American Chamber of Commerce San Francisco, in cooperation with many Europ",
-    "region": "bay_area",
-    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
-    "url": "https://members.gaba-network.org/norcal-events/Details/fall-european-networking-2026-1765752?sourceTypeId=Website",
-    "source_strategy": "custom_growthzone",
-    "source_detail": "Website"
-  },
-  {
-    "chamber": "German American Business Association of California (GABA)",
-    "title": "German Day in Golden Gate Park 2026",
-    "date_raw": "September 27, 2026 11:00 AM - 4:00 PM",
-    "date_parsed": "2026-09-27",
-    "location_raw": "SUN September 27 German Day in Golden Gate Park 2026 11:00 AM - 4:00 PM Celebrate German language, culture, and music!       Please join us for German Day in Golden Gate Park 2024, where a variety of San Francisco Bay Area German organizations come together to celebrate and ... German Day in Golden Gate Park 2026    - GABA Northern California Skip to content Events Upcoming Events Past Events GABA Gala Global Business Outlook Transatlantic Technology Summit Sponsorship Volunteering Newsletter Sign Up Programs Focus Topics Founders\u2019 Hub GABA Next Gen Membership Company Member Directory Company Individual About News Team Experts Advisory Board GABA Awardees Volunteering Contact Resources Job Board Partners Useful Links FAQ GABA Hub Login GABA Hub Information Create New Account Open mobile menu Close mobile menu German Day in Golden Gate Park 2026 Back to Search German Day in Golden Gate Park 2026 Sunday, September 27, 2026 (11:00 AM - 4:00 PM)\r\n                        ( PDT ) Description Celebrate German language, culture, and music! GABA is proud to support German Day in Golden Gate Park 2026 , where a variety of San Francisco Bay Area German organizations celebrate and promote German language, culture and music. The event will take place on Sunday, September ",
-    "region": "bay_area",
-    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
-    "url": "https://members.gaba-network.org/norcal-events/Details/german-day-in-golden-gate-park-2026-1921472?sourceTypeId=Website",
-    "source_strategy": "custom_growthzone",
-    "source_detail": "Website"
-  },
-  {
     "chamber": "German American Business Association of California (GABA)",
     "title": "GABA Founders' Hub: Advisor Roundtable",
     "date_raw": "October 13, 2026 8:00 AM - 9:00 AM",
@@ -284,6 +248,18 @@
     "region": "bay_area",
     "region_match": "assume_bay_area (confirmed in chambers.yaml)",
     "url": "https://members.gaba-network.org/norcal-events/Details/gaba-founders-hub-advisor-roundtable-1921432?sourceTypeId=Website",
+    "source_strategy": "custom_growthzone",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "German American Business Association of California (GABA)",
+    "title": "The Future of Longevity",
+    "date_raw": "October 15, 2026 5:30 PM - 8:00 PM",
+    "date_parsed": "2026-10-15",
+    "location_raw": "THU October 15 The Future of Longevity 5:30 PM - 8:00 PM Please join us for an engaging evening exploring one of today\u2019s most consequential and rapidly evolving questions: What does it mean to live longer\u2014and, more importantly, to live healthier, more active, and more fulfilling lives? Register The Future of Longevity    - GABA Northern California Skip to content Events Upcoming Events Past Events GABA Gala Global Business Outlook Transatlantic Technology Summit Sponsorship Volunteering Newsletter Sign Up Programs Focus Topics Founders\u2019 Hub GABA Next Gen Membership Company Member Directory Company Individual About News Team Experts Advisory Board GABA Awardees Volunteering Contact Resources Job Board Partners Useful Links FAQ GABA Hub Login GABA Hub Information Create New Account Open mobile menu Close mobile menu The Future of Longevity Back to Search The Future of Longevity Thursday, October 15, 2026 (5:30 PM - 8:00 PM)\r\n                        ( PDT ) Description The Future of Longevity: Research, Innovation, and Investment Please join us for an engaging evening exploring one of today\u2019s most consequential and rapidly evolving questions: What does it mean to live longer\u2014and, more importantly, to live healthier, more active, and more fulfilling lives? On Thursday, October 15",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://members.gaba-network.org/norcal-events/Details/the-future-of-longevity-1932857?sourceTypeId=Website",
     "source_strategy": "custom_growthzone",
     "source_detail": "Website"
   },
@@ -346,15 +322,5 @@
     "url": "https://www.facccalifornia.com/events/events-calendar/e/event/french-gastronomy-festival-2027.html",
     "source_strategy": "custom_facc",
     "source_detail": "Website"
-  },
-  {
-    "chamber": "babcsf",
-    "title": "Join the British American Business Council Northern California, the French American Chamber of Commerce San Francisco, and the German American Business Association, together with E",
-    "date_raw": "Thursday, September 24th, 2026",
-    "date_parsed": "2026-09-24",
-    "location_raw": "SAP, 135 Townsend Street, San Francisco, CA 94107 United States",
-    "region": "bay_area",
-    "url": "",
-    "source_detail": "Newsletter"
   }
 ]
