@@ -276,6 +276,30 @@
     "source_detail": "Website"
   },
   {
+    "chamber": "French American Chamber of Commerce San Francisco (FACCSF)",
+    "title": "Shaping the AI wave: Datacenters and the race for sustainable scale",
+    "date_raw": "5 Nov 2026",
+    "date_parsed": "2026-11-05",
+    "location_raw": "5 Nov 2026 San Francisco area Committee Planisware North America\n                            \n                            \n                                \u00a0\u2022\u00a0\n                            \n                            \n                                San Francisco Shaping the AI wave: Datacenters and the race for sustainable scale Join us for a forward-looking conversation on scaling AI sustainably ",
+    "region": "bay_area",
+    "region_match": "san francisco",
+    "url": "https://www.facccalifornia.com/events/events-calendar/e/event/shaping-the-ai-wave-datacenters-and-the-race-for-sustainable-scale.html",
+    "source_strategy": "custom_facc",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "German American Business Association of California (GABA)",
+    "title": "GABA Women Fall Meet",
+    "date_raw": "November 5, 2026 5:30 PM - 8:00 PM",
+    "date_parsed": "2026-11-05",
+    "location_raw": "THU November 5 GABA Women Fall Meet 5:30 PM - 8:00 PM An Evening of Conversation, Connection and Community Register GABA Women Fall Meet    - GABA Northern California Skip to content Events Upcoming Events Past Events GABA Gala Global Business Outlook Transatlantic Technology Summit Sponsorship Volunteering Newsletter Sign Up Programs Focus Topics Founders\u2019 Hub GABA Next Gen Membership Company Member Directory Company Individual About News Team Experts Advisory Board GABA Awardees Volunteering Contact Resources Job Board Partners Useful Links FAQ GABA Hub Login GABA Hub Information Create New Account Open mobile menu Close mobile menu GABA Women Fall Meet Back to Search GABA Women Fall Meet Thursday, November 5, 2026 (5:30 PM - 8:00 PM)\r\n                        ( PST ) Description Join GABA Women for a relaxed fall evening of good conversation, new connections, and community. As the days grow shorter, we\u2019re bringing a little German Herbstgef\u00fchl to the Bay Area. Enjoy a warm bowl of K\u00fcrbissuppe (pumpkin soup), light refreshments, and an informal evening with members of the German-American business co",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://members.gaba-network.org/norcal-events/Details/gaba-women-fall-meet-1940875?sourceTypeId=Website",
+    "source_strategy": "custom_growthzone",
+    "source_detail": "Website"
+  },
+  {
     "chamber": "GACC West \u2013 Representative of German Business",
     "title": "InnovationCamp BW 2026",
     "date_raw": "11/09/2026",
@@ -297,6 +321,18 @@
     "region_match": "assume_bay_area (confirmed in chambers.yaml)",
     "url": "https://members.gaba-network.org/norcal-events/Details/powering-the-ai-revolution-1910691?sourceTypeId=Website",
     "source_strategy": "custom_growthzone",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "French American Chamber of Commerce San Francisco (FACCSF)",
+    "title": "Holiday Sparkle San Francisco",
+    "date_raw": "2 Dec 2026",
+    "date_parsed": "2026-12-02",
+    "location_raw": "2 Dec 2026 San Francisco area Gala and evenings Lyc\u00e9e Fran\u00e7ais de San Francisco\n                            \n                            \n                                \u00a0\u2022\u00a0\n                            \n                            \n                                San Francisco Holiday Sparkle San Francisco Join us for a glamorous year-end celebration of French American elegance, fine flavors, and ",
+    "region": "bay_area",
+    "region_match": "san francisco",
+    "url": "https://www.facccalifornia.com/events/events-calendar/e/event/holiday-sparkle-san-francisco.html",
+    "source_strategy": "custom_facc",
     "source_detail": "Website"
   },
   {
