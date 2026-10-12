@@ -325,6 +325,18 @@
   },
   {
     "chamber": "French American Chamber of Commerce San Francisco (FACCSF)",
+    "title": "Company visit & Fireside chat: ALSO",
+    "date_raw": "18 Nov 2026",
+    "date_parsed": "2026-11-18",
+    "location_raw": "18 Nov 2026 San Francisco area Committee\n                            \n                                \u00a0\u2022\u00a0\u2026 ALSO.\n                            \n                            \n                                \u00a0\u2022\u00a0\n                            \n                            \n                                Palo Alto Company visit & Fireside chat: ALSO Born out of Rivian. Reimagining the future of urban mobil",
+    "region": "bay_area",
+    "region_match": "san francisco",
+    "url": "https://www.facccalifornia.com/events/events-calendar/e/event/company-visit-fireside-chat-also.html",
+    "source_strategy": "custom_facc",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "French American Chamber of Commerce San Francisco (FACCSF)",
     "title": "Holiday Sparkle San Francisco",
     "date_raw": "2 Dec 2026",
     "date_parsed": "2026-12-02",
@@ -344,6 +356,18 @@
     "region": "bay_area",
     "region_match": "san francisco",
     "url": "https://www.gaccwest.com/us/events?event_hub_filter%5Bcategory%5D=7&event_hub_filter%5ByearFilter%5D=all",
+    "source_strategy": "custom_gaccwest",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "GACC West \u2013 Representative of German Business",
+    "title": "Silicon Valley AI Immersion \u2013 Supply Chain Management, Procurement & Logistics",
+    "date_raw": "04/01/2027",
+    "date_parsed": "2027-04-01",
+    "location_raw": "Event 04/01/2027 Silicon Valley AI Immersion \u2013 Supply Chain Management, Procurement & Logistics An exclusive program for decision-makers at German Mittelstand manufacturers Register now",
+    "region": "bay_area",
+    "region_match": "silicon valley",
+    "url": "https://www.gaccwest.com/us/services/silicon-valley-innovation/silicon-valley-ai-immersion-supply-chain-management-procurement-logistics",
     "source_strategy": "custom_gaccwest",
     "source_detail": "Website"
   },
