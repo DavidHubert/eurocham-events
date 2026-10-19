@@ -240,42 +240,6 @@
     "source_detail": "Website"
   },
   {
-    "chamber": "German American Business Association of California (GABA)",
-    "title": "GABA Founders' Hub: Advisor Roundtable",
-    "date_raw": "October 13, 2026 8:00 AM - 9:00 AM",
-    "date_parsed": "2026-10-13",
-    "location_raw": "TUE October 13 GABA Founders' Hub: Advisor Roundtable 8:00 AM - 9:00 AM Founders' Hub: Advisor Roundtable Register GABA Founders' Hub: Advisor Roundtable    - GABA Northern California Skip to content Events Upcoming Events Past Events GABA Gala Global Business Outlook Transatlantic Technology Summit Sponsorship Volunteering Newsletter Sign Up Programs Focus Topics Founders\u2019 Hub GABA Next Gen Membership Company Member Directory Company Individual About News Team Experts Advisory Board GABA Awardees Volunteering Contact Resources Job Board Partners Useful Links FAQ GABA Hub Login GABA Hub Information Create New Account Open mobile menu Close mobile menu GABA Founders' Hub: Advisor Roundtable Back to Search GABA Founders' Hub: Advisor Roundtable Tuesday, October 13, 2026 (8:00 AM - 9:00 AM)\r\n                        ( PDT ) Description Join fellow GABA members for a dynamic Advisor Roundtable , connecting service providers who support the German-American start-up ecosystem . This interactive session brings together professionals from across key sectors \u2014 including legal, accounting, banking & finance, ",
-    "region": "bay_area",
-    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
-    "url": "https://members.gaba-network.org/norcal-events/Details/gaba-founders-hub-advisor-roundtable-1921432?sourceTypeId=Website",
-    "source_strategy": "custom_growthzone",
-    "source_detail": "Website"
-  },
-  {
-    "chamber": "German American Business Association of California (GABA)",
-    "title": "The Future of Longevity",
-    "date_raw": "October 15, 2026 5:30 PM - 8:00 PM",
-    "date_parsed": "2026-10-15",
-    "location_raw": "THU October 15 The Future of Longevity 5:30 PM - 8:00 PM Please join us for an engaging evening exploring one of today\u2019s most consequential and rapidly evolving questions: What does it mean to live longer\u2014and, more importantly, to live healthier, more active, and more fulfilling lives? Register The Future of Longevity    - GABA Northern California Skip to content Events Upcoming Events Past Events GABA Gala Global Business Outlook Transatlantic Technology Summit Sponsorship Volunteering Newsletter Sign Up Programs Focus Topics Founders\u2019 Hub GABA Next Gen Membership Company Member Directory Company Individual About News Team Experts Advisory Board GABA Awardees Volunteering Contact Resources Job Board Partners Useful Links FAQ GABA Hub Login GABA Hub Information Create New Account Open mobile menu Close mobile menu The Future of Longevity Back to Search The Future of Longevity Thursday, October 15, 2026 (5:30 PM - 8:00 PM)\r\n                        ( PDT ) Description The Future of Longevity: Research, Innovation, and Investment Please join us for an engaging evening exploring one of today\u2019s most consequential and rapidly evolving questions: What does it mean to live longer\u2014and, more importantly, to live healthier, more active, and more fulfilling lives? On Thursday, October 15",
-    "region": "bay_area",
-    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
-    "url": "https://members.gaba-network.org/norcal-events/Details/the-future-of-longevity-1932857?sourceTypeId=Website",
-    "source_strategy": "custom_growthzone",
-    "source_detail": "Website"
-  },
-  {
-    "chamber": "GACC West \u2013 Representative of German Business",
-    "title": "AI Ignite Program \u2013 RLP goes Silicon Valley",
-    "date_raw": "10/18/2026",
-    "date_parsed": "2026-10-18",
-    "location_raw": "10/18/2026 AI Ignite Program \u2013 RLP goes Silicon Valley October 18 \u2013 23, 2026 | 1-week-long Deep Dive Program: To unlock the full potential of AI, we need to understand it as an integral part of corporate strategy \u2013 as a strategic partner across every area of the business. A trip to Silicon Valley sh",
-    "region": "bay_area",
-    "region_match": "silicon valley",
-    "url": "https://www.gaccwest.com/us/events?event_hub_filter%5Bcategory%5D=20&event_hub_filter%5ByearFilter%5D=all",
-    "source_strategy": "custom_gaccwest",
-    "source_detail": "Website"
-  },
-  {
     "chamber": "French American Chamber of Commerce San Francisco (FACCSF)",
     "title": "Shaping the AI wave: Datacenters and the race for sustainable scale",
     "date_raw": "5 Nov 2026",
@@ -325,18 +289,6 @@
   },
   {
     "chamber": "French American Chamber of Commerce San Francisco (FACCSF)",
-    "title": "Company visit & Fireside chat: ALSO",
-    "date_raw": "18 Nov 2026",
-    "date_parsed": "2026-11-18",
-    "location_raw": "18 Nov 2026 San Francisco area Committee\n                            \n                                \u00a0\u2022\u00a0\u2026 ALSO.\n                            \n                            \n                                \u00a0\u2022\u00a0\n                            \n                            \n                                Palo Alto Company visit & Fireside chat: ALSO Born out of Rivian. Reimagining the future of urban mobil",
-    "region": "bay_area",
-    "region_match": "san francisco",
-    "url": "https://www.facccalifornia.com/events/events-calendar/e/event/company-visit-fireside-chat-also.html",
-    "source_strategy": "custom_facc",
-    "source_detail": "Website"
-  },
-  {
-    "chamber": "French American Chamber of Commerce San Francisco (FACCSF)",
     "title": "Holiday Sparkle San Francisco",
     "date_raw": "2 Dec 2026",
     "date_parsed": "2026-12-02",
@@ -357,6 +309,18 @@
     "region_match": "san francisco",
     "url": "https://www.gaccwest.com/us/events?event_hub_filter%5Bcategory%5D=7&event_hub_filter%5ByearFilter%5D=all",
     "source_strategy": "custom_gaccwest",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "French American Chamber of Commerce San Francisco (FACCSF)",
+    "title": "Company visit & Fireside chat: ALSO",
+    "date_raw": "9 Dec 2026",
+    "date_parsed": "2026-12-09",
+    "location_raw": "9 Dec 2026 San Francisco area Committee\n                            \n                                \u00a0\u2022\u00a0\u2026 ALSO\n                            \n                            \n                                \u00a0\u2022\u00a0\n                            \n                            \n                                Palo Alto Company visit & Fireside chat: ALSO Born out of Rivian. Reimagining the future of urban mobilit",
+    "region": "bay_area",
+    "region_match": "san francisco",
+    "url": "https://www.facccalifornia.com/events/events-calendar/e/event/company-visit-fireside-chat-also.html",
+    "source_strategy": "custom_facc",
     "source_detail": "Website"
   },
   {
