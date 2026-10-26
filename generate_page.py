@@ -196,7 +196,7 @@ def clean_text(raw: str) -> str:
     return t
 
 
-def build_excerpt(e: dict, max_len: int = 160) -> str:
+def build_excerpt(e: dict, max_len: int = 240) -> str:
     """Short readable description, or '' when nothing trustworthy is available."""
     raw = clean_text(e.get("location_raw", ""))
     if not raw:
@@ -282,29 +282,30 @@ SUMMARY_PAGE = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EuroCham SF — Upcoming Events (summary)</title>
 <style>{base_css}
-  body {{ padding: 4px 2px; }}
+  body {{ padding: 2px; }}
   ul {{ list-style: none; margin: 0; padding: 0; }}
-  li {{ padding: 10px 0; border-bottom: 1px solid var(--line); }}
-  li:last-child {{ border-bottom: 0; }}
+  li {{ background: #fff; border: 1px solid var(--line); border-radius: 8px;
+        padding: 12px 16px; margin-bottom: 10px; }}
   .date {{ font-size: 0.8rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: .02em; }}
   .title {{ display: block; font-size: 1rem; font-weight: 600; color: var(--ink); margin: 2px 0 3px; }}
-  .excerpt {{ font-size: 0.85rem; color: var(--muted); margin: 0 0 4px; }}
-  .more {{ padding-top: 10px; font-size: 0.9rem; font-weight: 600; }}
+  .excerpt {{ font-size: 0.85rem; color: var(--muted); margin: 0 0 6px;
+              white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }}
+  .more {{ padding: 2px 4px 6px; font-size: 0.9rem; font-weight: 600; }}
   .empty {{ color: var(--muted); font-style: italic; padding: 10px 0; }}
 </style>
 </head>
 <body>
 {items_html}
 <script>
-  /* ?n=5 shows five events, ?excerpt=1 adds a one-line description */
+  /* ?n=5 shows five events, ?excerpt=0 hides the one-line description */
   (function () {{
     try {{
       var q = new URLSearchParams(location.search);
       var n = parseInt(q.get('n'), 10) || {default_n};
       var items = document.querySelectorAll('li[data-i]');
       items.forEach(function (li) {{ li.style.display = (+li.dataset.i >= n) ? 'none' : ''; }});
-      if (q.get('excerpt') === '1') {{
-        document.querySelectorAll('.excerpt').forEach(function (p) {{ p.style.display = 'block'; }});
+      if (q.get('excerpt') === '0') {{
+        document.querySelectorAll('.excerpt').forEach(function (p) {{ p.style.display = 'none'; }});
       }}
     }} catch (e) {{}}
   }})();
@@ -366,7 +367,7 @@ def render_summary(items: list[dict]) -> str:
                               f'rel="noopener">{esc(e["title"])}</a>')
             else:
                 title_html = f'<span class="title">{esc(e["title"])}</span>'
-            excerpt_html = (f'<p class="excerpt" style="display:none">{esc(e["excerpt"])}</p>'
+            excerpt_html = (f'<p class="excerpt">{esc(e["excerpt"])}</p>'
                             if e["excerpt"] else "")
             lis.append(SUMMARY_ITEM.format(
                 i=i,
