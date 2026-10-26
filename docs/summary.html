@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EuroCham SF — Upcoming Events (summary)</title>
+<style>
+  :root { --ink:#1a1a1a; --muted:#5f6368; --accent:#1a5fb4; --line:#e3e5e8; --chip:#eef2ff; --chipink:#3730a3; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+         margin: 0; padding: 0; color: var(--ink); background: transparent; line-height: 1.35; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .chip { display: inline-block; background: var(--chip); color: var(--chipink);
+          border-radius: 4px; padding: 1px 7px; font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
+
+  body { padding: 4px 2px; }
+  ul { list-style: none; margin: 0; padding: 0; }
+  li { padding: 10px 0; border-bottom: 1px solid var(--line); }
+  li:last-child { border-bottom: 0; }
+  .date { font-size: 0.8rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: .02em; }
+  .title { display: block; font-size: 1rem; font-weight: 600; color: var(--ink); margin: 2px 0 3px; }
+  .excerpt { font-size: 0.85rem; color: var(--muted); margin: 0 0 4px; }
+  .more { padding-top: 10px; font-size: 0.9rem; font-weight: 600; }
+  .empty { color: var(--muted); font-style: italic; padding: 10px 0; }
+</style>
+</head>
+<body>
+<ul>
+<li data-i="0">
+  <div class="date">Thu, Nov 5, 2026</div>
+  <a class="title" href="https://www.facccalifornia.com/events/events-calendar/e/event/shaping-the-ai-wave-datacenters-and-the-race-for-sustainable-scale.html" target="_blank" rel="noopener">Shaping the AI wave: Datacenters and the race for sustainable scale</a>
+  <p class="excerpt" style="display:none">Committee Planisware North America · San Francisco Join us for a forward-looking conversation on scaling AI sustainably</p>
+  <span class="chip">FACC</span>
+</li>
+<li data-i="1">
+  <div class="date">Mon, Nov 9, 2026</div>
+  <a class="title" href="https://www.gaccwest.com/us/events?event_hub_filter%5Bcategory%5D=20&amp;event_hub_filter%5ByearFilter%5D=all" target="_blank" rel="noopener">InnovationCamp BW 2026</a>
+  <p class="excerpt" style="display:none">Experience the InnovationCamp: Connect your Baden-Württemberg (BW) business with Silicon Valley’s innovation ecosystem. Gain new insights, actionable…</p>
+  <span class="chip">GACC West</span>
+</li>
+<li data-i="2">
+  <div class="date">Wed, Dec 2, 2026</div>
+  <a class="title" href="https://www.facccalifornia.com/events/events-calendar/e/event/holiday-sparkle-san-francisco.html" target="_blank" rel="noopener">Holiday Sparkle San Francisco</a>
+  <p class="excerpt" style="display:none">Gala and evenings Lycée Français de San Francisco · San Francisco Join us for a glamorous year-end celebration of French American elegance, fine flavors, and</p>
+  <span class="chip">FACC</span>
+</li>
+<li data-i="3" style="display:none">
+  <div class="date">Tue, Dec 8, 2026</div>
+  <a class="title" href="https://www.gaccwest.com/us/events?event_hub_filter%5Bcategory%5D=7&amp;event_hub_filter%5ByearFilter%5D=all" target="_blank" rel="noopener">Holiday Party at German Hub</a>
+  <p class="excerpt" style="display:none">San Francisco AHK EVENT</p>
+  <span class="chip">GACC West</span>
+</li>
+<li data-i="4" style="display:none">
+  <div class="date">Wed, Dec 9, 2026</div>
+  <a class="title" href="https://www.facccalifornia.com/events/events-calendar/e/event/company-visit-fireside-chat-also.html" target="_blank" rel="noopener">Company visit &amp; Fireside chat: ALSO</a>
+  <p class="excerpt" style="display:none">Committee · ALSO · Palo Alto Born out of Rivian. Reimagining the future of urban mobilit</p>
+  <span class="chip">FACC</span>
+</li>
+<li data-i="5" style="display:none">
+  <div class="date">Thu, Apr 1, 2027</div>
+  <a class="title" href="https://www.gaccwest.com/us/services/silicon-valley-innovation/silicon-valley-ai-immersion-supply-chain-management-procurement-logistics" target="_blank" rel="noopener">Silicon Valley AI Immersion – Supply Chain Management, Procurement &amp; Logistics</a>
+  
+  <span class="chip">GACC West</span>
+</li>
+<li data-i="6" style="display:none">
+  <div class="date">Sat, Apr 3, 2027</div>
+  <a class="title" href="https://www.facccalifornia.com/events/events-calendar/e/event/french-gastronomy-festival-2027.html" target="_blank" rel="noopener">French Gastronomy Festival 2027</a>
+  <p class="excerpt" style="display:none">Fair &amp; Exhibition Lycée français de San Francisco · San Francisco Save the Date for the 7th edition of the French Gastronomy Festival</p>
+  <span class="chip">FACC</span>
+</li>
+</ul>
+<div class="more"><a href="https://davidhubert.github.io/eurocham-events/" target="_top">View all events →</a></div>
+<script>
+  /* ?n=5 shows five events, ?excerpt=1 adds a one-line description */
+  (function () {
+    try {
+      var q = new URLSearchParams(location.search);
+      var n = parseInt(q.get('n'), 10) || 3;
+      var items = document.querySelectorAll('li[data-i]');
+      items.forEach(function (li) { li.style.display = (+li.dataset.i >= n) ? 'none' : ''; });
+      if (q.get('excerpt') === '1') {
+        document.querySelectorAll('.excerpt').forEach(function (p) { p.style.display = 'block'; });
+      }
+    } catch (e) {}
+  })();
+</script>
+</body>
+</html>

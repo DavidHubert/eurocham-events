@@ -5,106 +5,71 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EuroCham SF — Bay Area Chamber Events</title>
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-         max-width: 800px; margin: 0 auto; padding: 24px 16px; background: #fafafa; color: #1a1a1a; }
-  h1 { font-size: 1.5rem; margin-bottom: 4px; }
-  .updated { color: #666; font-size: 0.85rem; margin-bottom: 24px; }
-  .event { background: white; border-radius: 8px; padding: 16px 20px; margin-bottom: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-  .event-date { font-weight: 600; color: #1a5fb4; font-size: 0.9rem; }
-  .event-title { font-size: 1.05rem; font-weight: 600; margin: 4px 0; }
-  .event-meta { color: #555; font-size: 0.88rem; }
-  .event-chamber { display: inline-block; background: #eef2ff; color: #3730a3;
-                     border-radius: 4px; padding: 2px 8px; font-size: 0.78rem; margin-top: 6px; }
-  .event-source { color: #999; font-size: 0.75rem; margin-top: 4px; }
-  a { color: #1a5fb4; }
-  .empty { color: #888; font-style: italic; }
+  :root { --ink:#1a1a1a; --muted:#5f6368; --accent:#1a5fb4; --line:#e3e5e8; --chip:#eef2ff; --chipink:#3730a3; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+         margin: 0; padding: 0; color: var(--ink); background: transparent; line-height: 1.35; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .chip { display: inline-block; background: var(--chip); color: var(--chipink);
+          border-radius: 4px; padding: 1px 7px; font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
+
+  body { max-width: 820px; margin: 0 auto; padding: 8px 12px 24px; }
+  .updated { color: var(--muted); font-size: 0.8rem; margin: 0 0 16px; }
+  .event { background: #fff; border: 1px solid var(--line); border-radius: 8px;
+            padding: 14px 18px; margin-bottom: 10px; }
+  .event-date { font-weight: 700; color: var(--accent); font-size: 0.85rem; }
+  .event-title { font-size: 1.08rem; font-weight: 600; margin: 3px 0 4px; }
+  .event-title a { color: var(--ink); }
+  .event-excerpt { color: var(--muted); font-size: 0.9rem; margin: 0 0 6px; }
+  .event-foot { font-size: 0.8rem; color: var(--muted); }
+  .event-foot a { font-weight: 600; margin-left: 8px; }
+  .empty { color: var(--muted); font-style: italic; }
 </style>
 </head>
 <body>
-<h1>EuroCham SF — Bay Area Chamber Events</h1>
-<div class="updated">Last updated October 26, 2026 at 14:43 UTC</div>
+<p class="updated">7 upcoming Bay Area events from our member chambers · updated Oct 26, 2026</p>
 <div class="event">
-  <div class="event-date">2026-11-05</div>
-  <div class="event-title">Shaping the AI wave: Datacenters and the race for sustainable scale</div>
-  <div class="event-meta">5 Nov 2026 San Francisco area Committee Planisware North America
-                            
-                            
-                                 • 
-                            
-                            
-                                San Francisco Shaping the AI wave: Datacenters and the race for sustainable scale Join us for a forward-looking conversation on scaling AI sustainably </div>
-  <span class="event-chamber">French American Chamber of Commerce San Francisco (FACCSF)</span>
-  <div class="event-source">Source: Website — <a href="https://www.facccalifornia.com/events/events-calendar/e/event/shaping-the-ai-wave-datacenters-and-the-race-for-sustainable-scale.html">details</a></div>
+  <div class="event-date">Thu, Nov 5, 2026</div>
+  <div class="event-title"><a href="https://www.facccalifornia.com/events/events-calendar/e/event/shaping-the-ai-wave-datacenters-and-the-race-for-sustainable-scale.html" target="_blank" rel="noopener">Shaping the AI wave: Datacenters and the race for sustainable scale</a></div>
+  <p class="event-excerpt">Committee Planisware North America · San Francisco Join us for a forward-looking conversation on scaling AI sustainably</p>
+  <div class="event-foot"><span class="chip">FACC</span><a href="https://www.facccalifornia.com/events/events-calendar/e/event/shaping-the-ai-wave-datacenters-and-the-race-for-sustainable-scale.html" target="_blank" rel="noopener">Details →</a></div>
 </div>
-
 <div class="event">
-  <div class="event-date">2026-11-09</div>
-  <div class="event-title">InnovationCamp BW 2026</div>
-  <div class="event-meta">11/09/2026 InnovationCamp BW 2026 November 9 - 20, 2026 | Experience the InnovationCamp: Connect your Baden-Württemberg (BW) business with Silicon Valley’s innovation ecosystem. Gain new insights, actionable solutions, and build a strong network to accelerate your company’s growth and digital transf</div>
-  <span class="event-chamber">GACC West – Representative of German Business</span>
-  <div class="event-source">Source: Website — <a href="https://www.gaccwest.com/us/events?event_hub_filter%5Bcategory%5D=20&event_hub_filter%5ByearFilter%5D=all">details</a></div>
+  <div class="event-date">Mon, Nov 9, 2026</div>
+  <div class="event-title"><a href="https://www.gaccwest.com/us/events?event_hub_filter%5Bcategory%5D=20&amp;event_hub_filter%5ByearFilter%5D=all" target="_blank" rel="noopener">InnovationCamp BW 2026</a></div>
+  <p class="event-excerpt">Experience the InnovationCamp: Connect your Baden-Württemberg (BW) business with Silicon Valley’s innovation ecosystem. Gain new insights, actionable…</p>
+  <div class="event-foot"><span class="chip">GACC West</span><a href="https://www.gaccwest.com/us/events?event_hub_filter%5Bcategory%5D=20&amp;event_hub_filter%5ByearFilter%5D=all" target="_blank" rel="noopener">Details →</a></div>
 </div>
-
 <div class="event">
-  <div class="event-date">2026-12-02</div>
-  <div class="event-title">Holiday Sparkle San Francisco</div>
-  <div class="event-meta">2 Dec 2026 San Francisco area Gala and evenings Lycée Français de San Francisco
-                            
-                            
-                                 • 
-                            
-                            
-                                San Francisco Holiday Sparkle San Francisco Join us for a glamorous year-end celebration of French American elegance, fine flavors, and </div>
-  <span class="event-chamber">French American Chamber of Commerce San Francisco (FACCSF)</span>
-  <div class="event-source">Source: Website — <a href="https://www.facccalifornia.com/events/events-calendar/e/event/holiday-sparkle-san-francisco.html">details</a></div>
+  <div class="event-date">Wed, Dec 2, 2026</div>
+  <div class="event-title"><a href="https://www.facccalifornia.com/events/events-calendar/e/event/holiday-sparkle-san-francisco.html" target="_blank" rel="noopener">Holiday Sparkle San Francisco</a></div>
+  <p class="event-excerpt">Gala and evenings Lycée Français de San Francisco · San Francisco Join us for a glamorous year-end celebration of French American elegance, fine flavors, and</p>
+  <div class="event-foot"><span class="chip">FACC</span><a href="https://www.facccalifornia.com/events/events-calendar/e/event/holiday-sparkle-san-francisco.html" target="_blank" rel="noopener">Details →</a></div>
 </div>
-
 <div class="event">
-  <div class="event-date">2026-12-08</div>
-  <div class="event-title">Holiday Party at German Hub</div>
-  <div class="event-meta">12/08/2026 Holiday Party at German Hub December 8 | 5:00 PM PST | San Francisco AHK EVENT</div>
-  <span class="event-chamber">GACC West – Representative of German Business</span>
-  <div class="event-source">Source: Website — <a href="https://www.gaccwest.com/us/events?event_hub_filter%5Bcategory%5D=7&event_hub_filter%5ByearFilter%5D=all">details</a></div>
+  <div class="event-date">Tue, Dec 8, 2026</div>
+  <div class="event-title"><a href="https://www.gaccwest.com/us/events?event_hub_filter%5Bcategory%5D=7&amp;event_hub_filter%5ByearFilter%5D=all" target="_blank" rel="noopener">Holiday Party at German Hub</a></div>
+  <p class="event-excerpt">San Francisco AHK EVENT</p>
+  <div class="event-foot"><span class="chip">GACC West</span><a href="https://www.gaccwest.com/us/events?event_hub_filter%5Bcategory%5D=7&amp;event_hub_filter%5ByearFilter%5D=all" target="_blank" rel="noopener">Details →</a></div>
 </div>
-
 <div class="event">
-  <div class="event-date">2026-12-09</div>
-  <div class="event-title">Company visit & Fireside chat: ALSO</div>
-  <div class="event-meta">9 Dec 2026 San Francisco area Committee
-                            
-                                 • … ALSO
-                            
-                            
-                                 • 
-                            
-                            
-                                Palo Alto Company visit & Fireside chat: ALSO Born out of Rivian. Reimagining the future of urban mobilit</div>
-  <span class="event-chamber">French American Chamber of Commerce San Francisco (FACCSF)</span>
-  <div class="event-source">Source: Website — <a href="https://www.facccalifornia.com/events/events-calendar/e/event/company-visit-fireside-chat-also.html">details</a></div>
+  <div class="event-date">Wed, Dec 9, 2026</div>
+  <div class="event-title"><a href="https://www.facccalifornia.com/events/events-calendar/e/event/company-visit-fireside-chat-also.html" target="_blank" rel="noopener">Company visit &amp; Fireside chat: ALSO</a></div>
+  <p class="event-excerpt">Committee · ALSO · Palo Alto Born out of Rivian. Reimagining the future of urban mobilit</p>
+  <div class="event-foot"><span class="chip">FACC</span><a href="https://www.facccalifornia.com/events/events-calendar/e/event/company-visit-fireside-chat-also.html" target="_blank" rel="noopener">Details →</a></div>
 </div>
-
 <div class="event">
-  <div class="event-date">2027-04-01</div>
-  <div class="event-title">Silicon Valley AI Immersion – Supply Chain Management, Procurement & Logistics</div>
-  <div class="event-meta">Event 04/01/2027 Silicon Valley AI Immersion – Supply Chain Management, Procurement & Logistics An exclusive program for decision-makers at German Mittelstand manufacturers Register now</div>
-  <span class="event-chamber">GACC West – Representative of German Business</span>
-  <div class="event-source">Source: Website — <a href="https://www.gaccwest.com/us/services/silicon-valley-innovation/silicon-valley-ai-immersion-supply-chain-management-procurement-logistics">details</a></div>
+  <div class="event-date">Thu, Apr 1, 2027</div>
+  <div class="event-title"><a href="https://www.gaccwest.com/us/services/silicon-valley-innovation/silicon-valley-ai-immersion-supply-chain-management-procurement-logistics" target="_blank" rel="noopener">Silicon Valley AI Immersion – Supply Chain Management, Procurement &amp; Logistics</a></div>
+  
+  <div class="event-foot"><span class="chip">GACC West</span><a href="https://www.gaccwest.com/us/services/silicon-valley-innovation/silicon-valley-ai-immersion-supply-chain-management-procurement-logistics" target="_blank" rel="noopener">Details →</a></div>
 </div>
-
 <div class="event">
-  <div class="event-date">2027-04-03</div>
-  <div class="event-title">French Gastronomy Festival 2027</div>
-  <div class="event-meta">3 Apr 2027 San Francisco area Fair & Exhibition Lycée français de San Francisco
-                            
-                            
-                                 • 
-                            
-                            
-                                San Francisco French Gastronomy Festival 2027 Save the Date for the 7th edition of the French Gastronomy Festival</div>
-  <span class="event-chamber">French American Chamber of Commerce San Francisco (FACCSF)</span>
-  <div class="event-source">Source: Website — <a href="https://www.facccalifornia.com/events/events-calendar/e/event/french-gastronomy-festival-2027.html">details</a></div>
+  <div class="event-date">Sat, Apr 3, 2027</div>
+  <div class="event-title"><a href="https://www.facccalifornia.com/events/events-calendar/e/event/french-gastronomy-festival-2027.html" target="_blank" rel="noopener">French Gastronomy Festival 2027</a></div>
+  <p class="event-excerpt">Fair &amp; Exhibition Lycée français de San Francisco · San Francisco Save the Date for the 7th edition of the French Gastronomy Festival</p>
+  <div class="event-foot"><span class="chip">FACC</span><a href="https://www.facccalifornia.com/events/events-calendar/e/event/french-gastronomy-festival-2027.html" target="_blank" rel="noopener">Details →</a></div>
 </div>
-
 </body>
 </html>
