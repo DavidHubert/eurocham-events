@@ -3,8 +3,11 @@
 Runs the full weekly pipeline:
   1. Scrape chamber websites (scraper.py)
   2. Fetch and parse chamber newsletters from Gmail (gmail_fetch.py + newsletter_parser.py)
-  3. Merge, dedupe, sort
-  4. Write docs/index.html — the page GitHub Pages serves
+  3. Merge, dedupe, sort, and build clean display fields
+  4. Write the pages GitHub Pages serves:
+       docs/summary.html  - compact preview (next 3 events) for the eurocham.org homepage
+       docs/index.html    - full list of upcoming events
+       docs/events.json   - clean data (no scraped page debris)
 
 Run manually with:  python generate_page.py
 Run automatically via .github/workflows/weekly.yml
@@ -14,7 +17,9 @@ import subprocess
 import sys
 import json
 import csv
-from datetime import datetime, timezone
+import re
+import html as htmllib
+from datetime import datetime, timezone, date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -29,6 +34,69 @@ except Exception as e:
     GMAIL_AVAILABLE = False
 
 
+# ---------------------------------------------------------------- settings
+# Where the "View all events" link on the summary points. Once the eurocham.org
+# events page exists, replace this with its address.
+FULL_PAGE_URL = "https://davidhubert.github.io/eurocham-events/"
+
+# How many events the summary renders (the embed shows 3 by default; the
+# address can ask for fewer or more, up to this number, with ?n=5).
+SUMMARY_MAX = 8
+SUMMARY_DEFAULT = 3
+
+# Short names shown on the pages. First matching fragment wins.
+CHAMBER_SHORT_NAMES = [
+    ("american-slovenian", "ASC"),
+    ("belgian-american", "BelCham"),
+    ("belwest", "Belwest"),
+    ("belgian & luxembourg", "Belwest"),
+    ("british american", "BABC"),
+    ("babcsf", "BABC"),
+    ("business association italy", "BAIA"),
+    ("baia", "BAIA"),
+    ("california spain", "California Spain Chamber"),
+    ("czechinvest", "CzechInvest"),
+    ("danish american", "DACC"),
+    ("daccncal", "DACC"),
+    ("french american", "FACC"),
+    ("facc", "FACC"),
+    ("german american business association", "GABA"),
+    ("gaba", "GABA"),
+    ("gacc", "GACC West"),
+    ("hungarian", "HACC"),
+    ("amhuchamber", "HACC"),
+    ("irish network", "INBA"),
+    ("irishnetwork", "INBA"),
+    ("open austria", "Open Austria"),
+    ("advantageaustria", "Open Austria"),
+    ("portugal", "AICEP"),
+    ("romanian", "RACC"),
+    ("racc", "RACC"),
+    ("slovak", "Slovak Pro"),
+    ("swedish", "SACC-SF/SV"),
+    ("sacc-sf", "SACC-SF/SV"),
+    ("swiss", "Swiss-American Chamber"),
+    ("saccsf", "Swiss-American Chamber"),
+    ("us-polish", "USPTC"),
+    ("usptc", "USPTC"),
+]
+
+
+def short_chamber(name: str) -> str:
+    """Display name for a chamber; handles 'A / B' when two chambers announced the same event."""
+    if not name:
+        return "Chamber"
+    parts = [p.strip() for p in name.split(" / ")]
+    out = []
+    for p in parts:
+        low = p.lower()
+        label = next((short for frag, short in CHAMBER_SHORT_NAMES if frag in low), p)
+        if label not in out:
+            out.append(label)
+    return " / ".join(out)
+
+
+# --------------------------------------------------------------- pipeline
 def run_website_scraper():
     """Runs scraper.py as a subprocess (it writes output/events.csv)."""
     subprocess.run([sys.executable, "scraper.py"], check=True, cwd=Path(__file__).parent)
@@ -78,83 +146,264 @@ def dedupe(events: list[dict]) -> list[dict]:
             existing_chamber = seen[key]["chamber"]
             if e.get("chamber") and e["chamber"] not in existing_chamber:
                 seen[key]["chamber"] = f"{existing_chamber} / {e['chamber']}"
+            # keep a link if only one of the two copies has one
+            if not seen[key].get("url") and e.get("url"):
+                seen[key]["url"] = e["url"]
         else:
             seen[key] = dict(e)
     return list(seen.values())
 
 
-HTML_TEMPLATE = """<!DOCTYPE html>
+def filter_future(events: list[dict]) -> list[dict]:
+    """Keep only events dated today or later. Events with no parseable
+    date are dropped, since we can't confirm they're upcoming."""
+    today = datetime.now(timezone.utc).date().isoformat()
+    return [e for e in events if e.get("date_parsed") and e["date_parsed"] >= today]
+
+
+# ------------------------------------------------------ display-text cleaning
+# The scraper keeps a blob of text found near each event ("location_raw") so it
+# can decide whether the event is in the Bay Area. That blob is for sorting
+# events, not for showing to people: it can contain menu items, buttons, HTML
+# and the title repeated. Everything below turns it into a short, safe excerpt,
+# or into nothing at all when it can't be trusted.
+
+JUNK_WORDS = re.compile(
+    r"log ?in|sign ?in|sign ?up|skip to|menu|cookie|privacy|javascript|"
+    r"©|copyright|subscribe|newsletter|add to calendar|share this|"
+    r"read more|learn more|click here|register now|my account|members? area|"
+    r"search|facebook|linkedin|twitter|instagram|download",
+    re.IGNORECASE,
+)
+
+DATE_BITS = re.compile(
+    r"\b\d{1,2}/\d{1,2}/\d{2,4}\b|"
+    r"\b\d{4}-\d{2}-\d{2}\b|"
+    r"\b\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?,?\s+\d{4}\b|"
+    r"\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+\d{1,2}(?:\s*[-–]\s*\d{1,2})?,?(?:\s+\d{4})?\b",
+    re.IGNORECASE,
+)
+
+
+def clean_text(raw: str) -> str:
+    """Strip HTML tags and entities, bullets and extra whitespace."""
+    if not raw:
+        return ""
+    t = re.sub(r"<[^>]+>", " ", raw)
+    t = htmllib.unescape(t)
+    t = t.replace("\xa0", " ").replace("•", " · ")
+    t = re.sub(r"\s+", " ", t).strip(" ·|-–—,;:")
+    return t
+
+
+def build_excerpt(e: dict, max_len: int = 160) -> str:
+    """Short readable description, or '' when nothing trustworthy is available."""
+    raw = clean_text(e.get("location_raw", ""))
+    if not raw:
+        return ""
+    title = clean_text(e.get("title", ""))
+
+    # remove the title (scraped blobs often repeat it) and any dates
+    if title:
+        raw = re.sub(re.escape(title), " ", raw, flags=re.IGNORECASE)
+    raw = DATE_BITS.sub(" ", raw)
+    raw = re.sub(r"^\s*Event\b", " ", raw)
+    raw = re.sub(r"^\s*San Francisco area\b", " ", raw)  # FACC region label
+    raw = raw.replace("…", " ")
+
+    # keep sentence-like segments; drop menu-ish or too-short fragments
+    segments = [s.strip(" ·-–—,;:") for s in re.split(r"\s*\|\s*", raw)]
+    good = [s for s in segments if len(s) >= 15 and not JUNK_WORDS.search(s)]
+    if not good:
+        return ""
+    text = " ".join(good)
+    text = re.sub(r"\s+", " ", text).strip()
+
+    # a real description reads like sentences; menus read like a pile of short words
+    words = text.split()
+    if len(words) < 4:
+        return ""
+    if sum(1 for w in words if w[:1].isupper()) / len(words) > 0.75 and len(words) > 8:
+        return ""  # almost every word capitalised: likely a nav/menu dump
+
+    if len(text) > max_len:
+        text = text[:max_len].rsplit(" ", 1)[0].rstrip(" ,;:.-–—") + "…"
+    return text
+
+
+def safe_url(url: str) -> str:
+    url = (url or "").strip()
+    return url if url.lower().startswith(("http://", "https://")) else ""
+
+
+def pretty_date(iso: str) -> str:
+    try:
+        d = date.fromisoformat(iso)
+        return f"{d.strftime('%a')}, {d.strftime('%b')} {d.day}, {d.year}"
+    except Exception:
+        return iso or "Date TBA"
+
+
+def prepare(events: list[dict]) -> list[dict]:
+    """Clean display records, future events only, soonest first."""
+    out = []
+    for e in sorted(filter_future(events), key=lambda e: e["date_parsed"]):
+        out.append({
+            "date": e["date_parsed"],
+            "date_display": pretty_date(e["date_parsed"]),
+            "title": clean_text(e.get("title", "")) or "Untitled event",
+            "excerpt": build_excerpt(e),
+            "chamber": short_chamber(e.get("chamber", "")),
+            "url": safe_url(e.get("url", "")),
+            "source": e.get("source_detail", ""),
+        })
+    return out
+
+
+# ------------------------------------------------------------------ HTML
+esc = lambda s: htmllib.escape(str(s or ""), quote=True)
+
+# Shared look. Transparent background so it blends into the eurocham.org page.
+BASE_CSS = """
+  :root { --ink:#1a1a1a; --muted:#5f6368; --accent:#1a5fb4; --line:#e3e5e8; --chip:#eef2ff; --chipink:#3730a3; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+         margin: 0; padding: 0; color: var(--ink); background: transparent; line-height: 1.35; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .chip { display: inline-block; background: var(--chip); color: var(--chipink);
+          border-radius: 4px; padding: 1px 7px; font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
+"""
+
+SUMMARY_PAGE = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EuroCham SF — Upcoming Events (summary)</title>
+<style>{base_css}
+  body {{ padding: 4px 2px; }}
+  ul {{ list-style: none; margin: 0; padding: 0; }}
+  li {{ padding: 10px 0; border-bottom: 1px solid var(--line); }}
+  li:last-child {{ border-bottom: 0; }}
+  .date {{ font-size: 0.8rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: .02em; }}
+  .title {{ display: block; font-size: 1rem; font-weight: 600; color: var(--ink); margin: 2px 0 3px; }}
+  .excerpt {{ font-size: 0.85rem; color: var(--muted); margin: 0 0 4px; }}
+  .more {{ padding-top: 10px; font-size: 0.9rem; font-weight: 600; }}
+  .empty {{ color: var(--muted); font-style: italic; padding: 10px 0; }}
+</style>
+</head>
+<body>
+{items_html}
+<script>
+  /* ?n=5 shows five events, ?excerpt=1 adds a one-line description */
+  (function () {{
+    try {{
+      var q = new URLSearchParams(location.search);
+      var n = parseInt(q.get('n'), 10) || {default_n};
+      var items = document.querySelectorAll('li[data-i]');
+      items.forEach(function (li) {{ li.style.display = (+li.dataset.i >= n) ? 'none' : ''; }});
+      if (q.get('excerpt') === '1') {{
+        document.querySelectorAll('.excerpt').forEach(function (p) {{ p.style.display = 'block'; }});
+      }}
+    }} catch (e) {{}}
+  }})();
+</script>
+</body>
+</html>
+"""
+
+SUMMARY_ITEM = """<li data-i="{i}"{hidden}>
+  <div class="date">{date_display}</div>
+  {title_html}
+  {excerpt_html}
+  <span class="chip">{chamber}</span>
+</li>"""
+
+FULL_PAGE = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EuroCham SF — Bay Area Chamber Events</title>
-<style>
-  body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-         max-width: 800px; margin: 0 auto; padding: 24px 16px; background: #fafafa; color: #1a1a1a; }}
-  h1 {{ font-size: 1.5rem; margin-bottom: 4px; }}
-  .updated {{ color: #666; font-size: 0.85rem; margin-bottom: 24px; }}
-  .event {{ background: white; border-radius: 8px; padding: 16px 20px; margin-bottom: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08); }}
-  .event-date {{ font-weight: 600; color: #1a5fb4; font-size: 0.9rem; }}
-  .event-title {{ font-size: 1.05rem; font-weight: 600; margin: 4px 0; }}
-  .event-meta {{ color: #555; font-size: 0.88rem; }}
-  .event-chamber {{ display: inline-block; background: #eef2ff; color: #3730a3;
-                     border-radius: 4px; padding: 2px 8px; font-size: 0.78rem; margin-top: 6px; }}
-  .event-source {{ color: #999; font-size: 0.75rem; margin-top: 4px; }}
-  a {{ color: #1a5fb4; }}
-  .empty {{ color: #888; font-style: italic; }}
+<style>{base_css}
+  body {{ max-width: 820px; margin: 0 auto; padding: 8px 12px 24px; }}
+  .updated {{ color: var(--muted); font-size: 0.8rem; margin: 0 0 16px; }}
+  .event {{ background: #fff; border: 1px solid var(--line); border-radius: 8px;
+            padding: 14px 18px; margin-bottom: 10px; }}
+  .event-date {{ font-weight: 700; color: var(--accent); font-size: 0.85rem; }}
+  .event-title {{ font-size: 1.08rem; font-weight: 600; margin: 3px 0 4px; }}
+  .event-title a {{ color: var(--ink); }}
+  .event-excerpt {{ color: var(--muted); font-size: 0.9rem; margin: 0 0 6px; }}
+  .event-foot {{ font-size: 0.8rem; color: var(--muted); }}
+  .event-foot a {{ font-weight: 600; margin-left: 8px; }}
+  .empty {{ color: var(--muted); font-style: italic; }}
 </style>
 </head>
 <body>
-<h1>EuroCham SF — Bay Area Chamber Events</h1>
-<div class="updated">Last updated {updated}</div>
+<p class="updated">{count} upcoming Bay Area events from our member chambers · updated {updated}</p>
 {events_html}
 </body>
 </html>
 """
 
-EVENT_TEMPLATE = """<div class="event">
+FULL_EVENT = """<div class="event">
   <div class="event-date">{date_display}</div>
-  <div class="event-title">{title}</div>
-  <div class="event-meta">{location}</div>
-  <span class="event-chamber">{chamber}</span>
-  <div class="event-source">Source: {source_detail}{link_html}</div>
-</div>
-"""
+  <div class="event-title">{title_html}</div>
+  {excerpt_html}
+  <div class="event-foot"><span class="chip">{chamber}</span>{link_html}</div>
+</div>"""
 
 
-def filter_future(events: list[dict]) -> list[dict]:
-    """Keep only events dated today or later. Events with no parseable
-    date are dropped from the main page too, since we can't confirm
-    they're upcoming — same 'exclude rather than guess' rule used for
-    unclear locations."""
-    today = datetime.now(timezone.utc).date().isoformat()
-    return [e for e in events if e.get("date_parsed") and e["date_parsed"] >= today]
+def render_summary(items: list[dict]) -> str:
+    if not items:
+        body = '<p class="empty">No upcoming events listed right now.</p>'
+    else:
+        lis = []
+        for i, e in enumerate(items[:SUMMARY_MAX]):
+            if e["url"]:
+                title_html = (f'<a class="title" href="{esc(e["url"])}" target="_blank" '
+                              f'rel="noopener">{esc(e["title"])}</a>')
+            else:
+                title_html = f'<span class="title">{esc(e["title"])}</span>'
+            excerpt_html = (f'<p class="excerpt" style="display:none">{esc(e["excerpt"])}</p>'
+                            if e["excerpt"] else "")
+            lis.append(SUMMARY_ITEM.format(
+                i=i,
+                hidden=' style="display:none"' if i >= SUMMARY_DEFAULT else "",
+                date_display=esc(e["date_display"]),
+                title_html=title_html,
+                excerpt_html=excerpt_html,
+                chamber=esc(e["chamber"]),
+            ))
+        body = "<ul>\n" + "\n".join(lis) + "\n</ul>"
+    body += (f'\n<div class="more"><a href="{esc(FULL_PAGE_URL)}" target="_top">'
+             f'View all events →</a></div>')
+    return SUMMARY_PAGE.format(base_css=BASE_CSS, items_html=body, default_n=SUMMARY_DEFAULT)
 
 
-def render_html(events: list[dict]) -> str:
-    events = filter_future(events)
-    events_sorted = sorted(events, key=lambda e: e.get("date_parsed") or "9999")
-    if not events_sorted:
+def render_full(items: list[dict]) -> str:
+    if not items:
         events_html = '<p class="empty">No upcoming Bay Area events found this week.</p>'
     else:
         blocks = []
-        for e in events_sorted:
-            date_display = e.get("date_parsed") or e.get("date_raw") or "Date TBA"
-            link_html = f' — <a href="{e["url"]}">details</a>' if e.get("url") else ""
-            blocks.append(EVENT_TEMPLATE.format(
-                date_display=date_display,
-                title=e.get("title", "Untitled event"),
-                location=e.get("location_raw", "") or "Location TBA",
-                chamber=e.get("chamber", "Unknown"),
-                source_detail=e.get("source_detail", "Unknown"),
-                link_html=link_html,
+        for e in items:
+            if e["url"]:
+                title_html = f'<a href="{esc(e["url"])}" target="_blank" rel="noopener">{esc(e["title"])}</a>'
+                link_html = f'<a href="{esc(e["url"])}" target="_blank" rel="noopener">Details →</a>'
+            else:
+                title_html = esc(e["title"])
+                link_html = ""
+            excerpt_html = f'<p class="event-excerpt">{esc(e["excerpt"])}</p>' if e["excerpt"] else ""
+            blocks.append(FULL_EVENT.format(
+                date_display=esc(e["date_display"]), title_html=title_html,
+                excerpt_html=excerpt_html, chamber=esc(e["chamber"]), link_html=link_html,
             ))
         events_html = "\n".join(blocks)
-
-    return HTML_TEMPLATE.format(
-        updated=datetime.now(timezone.utc).strftime("%B %d, %Y at %H:%M UTC"),
+    return FULL_PAGE.format(
+        base_css=BASE_CSS,
+        count=len(items),
+        updated=datetime.now(timezone.utc).strftime("%b %d, %Y"),
         events_html=events_html,
     )
 
@@ -163,13 +412,15 @@ def main():
     website_events = run_website_scraper()
     newsletter_events = run_newsletter_pipeline()
     merged = dedupe(website_events + newsletter_events)
+    items = prepare(merged)
 
     docs_dir = Path(__file__).parent / "docs"
     docs_dir.mkdir(exist_ok=True)
-    (docs_dir / "index.html").write_text(render_html(merged), encoding="utf-8")
-    (docs_dir / "events.json").write_text(json.dumps(merged, indent=2), encoding="utf-8")
+    (docs_dir / "index.html").write_text(render_full(items), encoding="utf-8")
+    (docs_dir / "summary.html").write_text(render_summary(items), encoding="utf-8")
+    (docs_dir / "events.json").write_text(json.dumps(items, indent=2, ensure_ascii=False), encoding="utf-8")
 
-    print(f"Wrote {len(merged)} events to docs/index.html")
+    print(f"Wrote {len(items)} upcoming events to docs/index.html and docs/summary.html")
 
 
 if __name__ == "__main__":
