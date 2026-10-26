@@ -36,6 +36,42 @@
     "source_detail": "Website"
   },
   {
+    "chamber": "German American Business Association of California (GABA)",
+    "title": "Blog test 3",
+    "date_raw": "Wed, 20 Dec 2023 14:50:50 +0000",
+    "date_parsed": "2023-12-20",
+    "location_raw": "<p>At K&#038;L Gates in San Francisco, Feb 17, 2020</p>\n<p>The post <a href=\"https://www.gaba-network.org/test/blog-test-3/\">Blog test 3</a> appeared first on <a href=\"https://www.gaba-network.org\">GABA - German American Business Association</a>.</p>",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://www.gaba-network.org/test/blog-test-3/",
+    "source_strategy": "rss_feed",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "German American Business Association of California (GABA)",
+    "title": "Joining German-American Business Networking Groups in California",
+    "date_raw": "Mon, 08 Jan 2024 14:24:28 +0000",
+    "date_parsed": "2024-01-08",
+    "location_raw": "<p>Introduction In today&#8217;s globalized economy, creating international business connections is more important than ever. For professionals hailing from Germany or California with transatlantic business interests, building a strong network can be a game changer. This is where\u00a0German-American bus",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://www.gaba-network.org/uncategorized/joining-german-american-business-networking-groups-in-california/",
+    "source_strategy": "rss_feed",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "German American Business Association of California (GABA)",
+    "title": "Unlocking the Benefits of GABA Memberships for German-American Professionals",
+    "date_raw": "Thu, 18 Jan 2024 20:43:54 +0000",
+    "date_parsed": "2024-01-18",
+    "location_raw": "<p>Introduction to GABA: Strengthening Transatlantic Business Connections Imagine a platform that perfectly bridges the gap between German and American professionals, offering a wealth of networking opportunities, access to industry thought leaders, and a series of impactful events. Welcome to the G",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://www.gaba-network.org/uncategorized/unlocking-the-benefits-of-gaba-memberships-for-german-american-professionals/",
+    "source_strategy": "rss_feed",
+    "source_detail": "Website"
+  },
+  {
     "chamber": "Slovak Pro",
     "title": "Slovaks Meet Slovaks",
     "date_raw": "February 1, 2024",
@@ -48,11 +84,95 @@
     "source_detail": "Website"
   },
   {
+    "chamber": "German American Business Association of California (GABA)",
+    "title": "5 Smart Ways to Nail German-American Networking You\u2019ll Wish You Knew Sooner",
+    "date_raw": "Sun, 04 Feb 2024 01:35:40 +0000",
+    "date_parsed": "2024-02-04",
+    "location_raw": "<p>Are you a professional seeking meaningful connections within the German-American business community, yet struggling to find the right channels? German-American networking might feel challenging due to language barriers, cultural differences or simply not knowing where to start. Fear not, we at GA",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://www.gaba-network.org/uncategorized/5-smart-ways-to-nail-german-american-networking-youll-wish-you-knew-sooner/",
+    "source_strategy": "rss_feed",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "German American Business Association of California (GABA)",
+    "title": "The Ultimate Guide to German American Networking Opportunities",
+    "date_raw": "Thu, 15 Feb 2024 16:00:41 +0000",
+    "date_parsed": "2024-02-15",
+    "location_raw": "<p>Introduction Are you seeking to establish meaningful business connections within the German American community, but struggling to find the right opportunities? Have you ever felt like you&#8217;re missing out on the benefits of a broader network or wished for a more direct connection to the netwo",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://www.gaba-network.org/uncategorized/the-ultimate-guide-to-german-american-networking-opportunities/",
+    "source_strategy": "rss_feed",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "German American Business Association of California (GABA)",
+    "title": "The Ultimate Checklist for German Business Networking Success",
+    "date_raw": "Thu, 14 Mar 2024 01:55:31 +0000",
+    "date_parsed": "2024-03-14",
+    "location_raw": "<p>Does the thought of expanding your business or professional network in Germany overwhelm you? Are you uncertain about how or where to start? Navigating the maze of German business networking can be daunting. This complexity stems from the robustness of Germany&#8217;s business landscape, its exte",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://www.gaba-network.org/uncategorized/the-ultimate-checklist-for-german-business-networking-success/",
+    "source_strategy": "rss_feed",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "German American Business Association of California (GABA)",
+    "title": "Top Networking Events for Professionals in California\u2019s German American Business Community",
+    "date_raw": "Thu, 21 Mar 2024 15:15:10 +0000",
+    "date_parsed": "2024-03-21",
+    "location_raw": "<p>Introduction In the vibrant ecosystem of today&#8217;s global business landscape,\u00a0networking is a vital tool\u00a0for professionals seeking to advance their careers, expand their industry knowledge, and establish meaningful connections. For professionals in California\u2019s German American business commun",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://www.gaba-network.org/uncategorized/top-networking-events-for-professionals-in-californias-german-american-business-community/",
+    "source_strategy": "rss_feed",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "German American Business Association of California (GABA)",
+    "title": "Exploring the German-American Startup Ecosystem",
+    "date_raw": "Thu, 04 Apr 2024 15:00:08 +0000",
+    "date_parsed": "2024-04-04",
+    "location_raw": "<p>The German-American startup ecosystem is a dynamic, interconnected landscape that sparks innovation, fuels economic growth, and bridges two robust economies. This ecosystem is an exciting combination of creative minds, groundbreaking ideas, and supportive policies. It&#8217;s a space where entrep",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://www.gaba-network.org/uncategorized/exploring-the-german-american-startup-ecosystem/",
+    "source_strategy": "rss_feed",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "German American Business Association of California (GABA)",
+    "title": "Top Networking Events for Professionals in California\u2019s German and American Business Community",
+    "date_raw": "Thu, 18 Apr 2024 23:07:13 +0000",
+    "date_parsed": "2024-04-18",
+    "location_raw": "<p>Introduction In the vibrant ecosystem of today&#8217;s global business landscape,\u00a0networking is a vital tool\u00a0for professionals seeking to advance their careers, expand their industry knowledge, and establish meaningful connections. For professionals in California\u2019s German and American business co",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://www.gaba-network.org/uncategorized/top-networking-events-for-professionals-in-californias-german-and-american-business-community/",
+    "source_strategy": "rss_feed",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "German American Business Association of California (GABA)",
+    "title": "Strategies for Expanding Your Business Network between Germany and California",
+    "date_raw": "Thu, 02 May 2024 23:11:26 +0000",
+    "date_parsed": "2024-05-02",
+    "location_raw": "<p>The world is becoming increasingly interconnected, and businesses are no longer confined to their home territories. The rise of digital technologies and the ease of global communication have blurred geographical boundaries, making transatlantic business networks more critical than ever. This is p",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://www.gaba-network.org/uncategorized/strategies-for-expanding-your-business-network-between-germany-and-california/",
+    "source_strategy": "rss_feed",
+    "source_detail": "Website"
+  },
+  {
     "chamber": "Slovak Pro",
     "title": "Picnic at Stanford (Slovak PRO San Francisco)",
     "date_raw": "August 17, 2024",
     "date_parsed": "2024-08-17",
-    "location_raw": "Picnic at Stanford (Slovak PRO San Francisco) Picnic at Stanford (Slovak PRO San Francisco) Saturday, August 17, 2024 2:30\u202fPM 5:30\u202fPM Stanford Hills Park (map) Google Calendar ICS Sign up on the Facebook Event https://www.facebook.com/events/1879161895916027/ View Event \u2192",
+    "location_raw": "Picnic at Stanford (Slovak PRO San Francisco) Picnic at Stanford (Slovak PRO San Francisco) Saturday, August 17, 2024 2:30\u202fPM 5:30\u202fPM Stanford Hills Park (map) Google Calendar ICS View Event \u2192",
     "region": "bay_area",
     "region_match": "san francisco",
     "url": "https://www.slovakpro.org/luma/piknik-na-stanforde-08-24",
@@ -104,30 +224,6 @@
     "region": "bay_area",
     "region_match": "bay area",
     "url": "https://irishnetworkbayarea.com/agentic-ai-comes-to-life-lessons-from-a-sold-out-night-with-the-irish-network-bay-area/",
-    "source_strategy": "rss_feed",
-    "source_detail": "Website"
-  },
-  {
-    "chamber": "Swiss-American Chamber of Commerce",
-    "title": "How to Get a 90+ PageSpeed Score in WordPress for Free (Measured)",
-    "date_raw": "Tue, 11 Aug 2026 10:14:30 +0000",
-    "date_parsed": "2026-08-11",
-    "location_raw": "<p>Want a 90+ PageSpeed score in WordPress for free? This guide walks through the free stack: caching, image optimization, theme discipline, with measured before and after results.</p>\n<p>The post <a href=\"https://saccsf.com/2026/08/11/how-to-get-a-90-pagespeed-score-in-wordpress-for-free-measured/\"",
-    "region": "bay_area",
-    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
-    "url": "https://saccsf.com/2026/08/11/how-to-get-a-90-pagespeed-score-in-wordpress-for-free-measured/",
-    "source_strategy": "rss_feed",
-    "source_detail": "Website"
-  },
-  {
-    "chamber": "Swiss-American Chamber of Commerce",
-    "title": "WooCommerce Product Customization: Sell Personalized Products (Free)",
-    "date_raw": "Wed, 12 Aug 2026 10:52:34 +0000",
-    "date_parsed": "2026-08-12",
-    "location_raw": "<p>Want to sell engraved or personalized products in WooCommerce? This guide builds a customizable product with free PPOM: text fields, paid options, conditional logic.</p>\n<p>The post <a href=\"https://saccsf.com/2026/08/12/woocommerce-product-customization-sell-personalized-products-free/\">WooComme",
-    "region": "bay_area",
-    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
-    "url": "https://saccsf.com/2026/08/12/woocommerce-product-customization-sell-personalized-products-free/",
     "source_strategy": "rss_feed",
     "source_detail": "Website"
   },
@@ -240,6 +336,30 @@
     "source_detail": "Website"
   },
   {
+    "chamber": "Swiss-American Chamber of Commerce",
+    "title": "I\u2019m Reviewing the AI Agent by SiteGround \u2013 Here\u2019s What It Can and Can\u2019t Do",
+    "date_raw": "Thu, 22 Oct 2026 14:02:58 +0000",
+    "date_parsed": "2026-10-22",
+    "location_raw": "<p>I'm about to review a WordPress plugin rated 1.7/5 in the official repo. Why do I want to do this to myself (and all of you)? Well, AI Agent by SiteGround had a rough start, but there's more to the story. I'm going to get to all that.</p>\n<p>The post <a href=\"https://saccsf.com/2026/10/22/im-revi",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://saccsf.com/2026/10/22/im-reviewing-the-ai-agent-by-siteground-heres-what-it-can-and-cant-do/",
+    "source_strategy": "rss_feed",
+    "source_detail": "Website"
+  },
+  {
+    "chamber": "Swiss-American Chamber of Commerce",
+    "title": "How to Connect Claude to WordPress (Free Plugin, Step by Step)",
+    "date_raw": "Fri, 23 Oct 2026 08:00:19 +0000",
+    "date_parsed": "2026-10-23",
+    "location_raw": "<p>Connect Claude to WordPress with a free plugin: add your site as a custom connector, approve access, run a first task, and fix it when it won't connect.</p>\n<p>The post <a href=\"https://saccsf.com/2026/10/23/how-to-connect-claude-to-wordpress-free-plugin-step-by-step/\">How to Connect Claude to Wo",
+    "region": "bay_area",
+    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
+    "url": "https://saccsf.com/2026/10/23/how-to-connect-claude-to-wordpress-free-plugin-step-by-step/",
+    "source_strategy": "rss_feed",
+    "source_detail": "Website"
+  },
+  {
     "chamber": "French American Chamber of Commerce San Francisco (FACCSF)",
     "title": "Shaping the AI wave: Datacenters and the race for sustainable scale",
     "date_raw": "5 Nov 2026",
@@ -252,18 +372,6 @@
     "source_detail": "Website"
   },
   {
-    "chamber": "German American Business Association of California (GABA)",
-    "title": "GABA Women Fall Meet",
-    "date_raw": "November 5, 2026 5:30 PM - 8:00 PM",
-    "date_parsed": "2026-11-05",
-    "location_raw": "THU November 5 GABA Women Fall Meet 5:30 PM - 8:00 PM An Evening of Conversation, Connection and Community Register GABA Women Fall Meet    - GABA Northern California Skip to content Events Upcoming Events Past Events GABA Gala Global Business Outlook Transatlantic Technology Summit Sponsorship Volunteering Newsletter Sign Up Programs Focus Topics Founders\u2019 Hub GABA Next Gen Membership Company Member Directory Company Individual About News Team Experts Advisory Board GABA Awardees Volunteering Contact Resources Job Board Partners Useful Links FAQ GABA Hub Login GABA Hub Information Create New Account Open mobile menu Close mobile menu GABA Women Fall Meet Back to Search GABA Women Fall Meet Thursday, November 5, 2026 (5:30 PM - 8:00 PM)\r\n                        ( PST ) Description Join GABA Women for a relaxed fall evening of good conversation, new connections, and community. As the days grow shorter, we\u2019re bringing a little German Herbstgef\u00fchl to the Bay Area. Enjoy a warm bowl of K\u00fcrbissuppe (pumpkin soup), light refreshments, and an informal evening with members of the German-American business co",
-    "region": "bay_area",
-    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
-    "url": "https://members.gaba-network.org/norcal-events/Details/gaba-women-fall-meet-1940875?sourceTypeId=Website",
-    "source_strategy": "custom_growthzone",
-    "source_detail": "Website"
-  },
-  {
     "chamber": "GACC West \u2013 Representative of German Business",
     "title": "InnovationCamp BW 2026",
     "date_raw": "11/09/2026",
@@ -273,18 +381,6 @@
     "region_match": "silicon valley",
     "url": "https://www.gaccwest.com/us/events?event_hub_filter%5Bcategory%5D=20&event_hub_filter%5ByearFilter%5D=all",
     "source_strategy": "custom_gaccwest",
-    "source_detail": "Website"
-  },
-  {
-    "chamber": "German American Business Association of California (GABA)",
-    "title": "Powering the AI Revolution",
-    "date_raw": "November 10, 2026 6:00 PM - 8:00 PM",
-    "date_parsed": "2026-11-10",
-    "location_raw": "TUE November 10 Powering the AI Revolution 6:00 PM - 8:00 PM Can Our Energy Infrastructure Keep Up with the Future of Intelligence? Register Powering the AI Revolution    - GABA Northern California Skip to content Events Upcoming Events Past Events GABA Gala Global Business Outlook Transatlantic Technology Summit Sponsorship Volunteering Newsletter Sign Up Programs Focus Topics Founders\u2019 Hub GABA Next Gen Membership Company Member Directory Company Individual About News Team Experts Advisory Board GABA Awardees Volunteering Contact Resources Job Board Partners Useful Links FAQ GABA Hub Login GABA Hub Information Create New Account Open mobile menu Close mobile menu Powering the AI Revolution Back to Search Powering the AI Revolution Tuesday, November 10, 2026 (6:00 PM - 8:00 PM)\r\n                        ( PST ) Description Organized by the Japanese Chamber of Commerce of Northern California ( JCCNC ), US-Japan Business Forum Silicon Valley ( Keizai Silicon Valley ), the Jewish High Tech Community ( JHTC ), and the German American Business Association ( GABA ) Event Overview Artificial Intelligence is rapidly transforming ev",
-    "region": "bay_area",
-    "region_match": "assume_bay_area (confirmed in chambers.yaml)",
-    "url": "https://members.gaba-network.org/norcal-events/Details/powering-the-ai-revolution-1910691?sourceTypeId=Website",
-    "source_strategy": "custom_growthzone",
     "source_detail": "Website"
   },
   {
