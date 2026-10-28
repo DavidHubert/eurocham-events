@@ -714,6 +714,44 @@ def strategy_custom_iee(chamber_name: str, events_url: str) -> list[Event]:
     return events
 
 
+# ---------- Strategy: ChamberMaster / GrowthZone event cards (e.g. BABC) ----------
+
+def strategy_custom_gzcards(chamber_name: str, events_url: str) -> list[Event]:
+    """ChamberMaster event lists (e.g. babc.chambermaster.com/events) render each
+    event as a card: .gz-card-title (title + link), .gz-card-date (date WITH year,
+    e.g. 'Friday Dec 11, 2026') and .gz-description (short blurb)."""
+    resp = fetch(events_url)
+    if not resp:
+        return []
+    soup = BeautifulSoup(resp.text, "html.parser")
+    events, seen = [], set()
+    cards = soup.select(".gz-events-card")
+    for card in cards:
+        title_a = card.select_one(".gz-card-title a") or card.select_one(".gz-card-title")
+        date_el = card.select_one(".gz-card-date")
+        if not title_a or not date_el:
+            continue
+        title = re.sub(r"\s+", " ", title_a.get_text(" ", strip=True))
+        date_raw = re.sub(r"\s+", " ", date_el.get_text(" ", strip=True))
+        if not title or not re.search(r"\b20\d\d\b", date_raw):
+            continue
+        date_parsed = try_parse_date(date_raw)
+        href = title_a.get("href") if title_a.name == "a" else None
+        url = urljoin(events_url, href) if href else events_url
+        desc = card.select_one(".gz-description")
+        key = (date_parsed, title.lower()[:25])
+        if key in seen:
+            continue
+        seen.add(key)
+        events.append(Event(
+            chamber=chamber_name, title=title, date_raw=date_raw, date_parsed=date_parsed,
+            url=url, source_strategy="custom_gzcards",
+            location_raw=desc.get_text(" ", strip=True)[:300] if desc else "",
+        ))
+    print(f"    [gzcards debug] cards found={len(cards)}, events built={len(events)}")
+    return events
+
+
 # ---------- Strategy: GrowthZone calendar platforms (e.g. GABA) ----------
 # GrowthZone-powered chamber sites (members.<chamber>.org/...-events) list
 # each event's weekday/month/day WITHOUT a year, so the generic date
@@ -1009,6 +1047,11 @@ def scrape_chamber(chamber: dict) -> tuple[list[Event], str]:
         if events:
             return events, "custom_iee"
 
+    if platform == "custom_gzcards":
+        events = strategy_custom_gzcards(name, events_url)
+        if events:
+            return events, "custom_gzcards"
+
     if platform == "custom_dateline":
         events = strategy_custom_dateline(name, events_url)
         if events:
@@ -1032,6 +1075,12 @@ def scrape_chamber(chamber: dict) -> tuple[list[Event], str]:
         events = strategy_squarespace(name, events_url)
         if events:
             return events, "squarespace_json"
+
+    # A chamber with its own dedicated reader (platform: custom_*) must not fall
+    # back to the generic guesswork: when the page can't be read, report FAILED
+    # rather than publish page furniture (agenda lines, menu items) as events.
+    if platform.startswith("custom_"):
+        return [], "FAILED"
 
     events = strategy_rss(name, homepage, events_url)
     if events:

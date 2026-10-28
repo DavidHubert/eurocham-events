@@ -29,8 +29,8 @@ chambers:
 
   - name: British American Business Council Northern California (BABCSF)
     homepage: https://babcsf.org
-    events_url: https://babcsf.org/events
-    platform: auto
+    events_url: https://babc.chambermaster.com/events
+    platform: custom_gzcards
     assume_bay_area: true
 
   - name: Business Association Italy America (BAIA)
