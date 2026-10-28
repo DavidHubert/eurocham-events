@@ -275,7 +275,11 @@ def strategy_rss(chamber_name: str, homepage: str, events_url: str) -> list[Even
                 source_strategy="rss_feed",
                 location_raw=location_raw[:300],
             ))
-        if events:
+        # A blog/news feed carries *publication* dates, which are always in the
+        # past. If nothing in the feed is dated today or later, it is not an
+        # events feed, so let the later strategies (JSON-LD, generic) try.
+        today = datetime.now().date().isoformat()
+        if any(e.date_parsed and e.date_parsed >= today for e in events):
             return events
     return []
 
@@ -419,6 +423,288 @@ def strategy_custom_gaccwest(chamber_name: str, events_url: str) -> list[Event]:
     for e in events:
         dedup[e.title] = e
     return list(dedup.values())
+
+
+# ---------- Strategy: "Date: ... Location: ..." pages (e.g. California Spain Chamber) ----------
+
+_JUNK_HEADINGS = ("upcoming events", "past events", "events", "agenda", "speakers",
+                  "agenda & speakers", "register", "contact", "menu")
+
+
+def strategy_custom_dateloc(chamber_name: str, events_url: str) -> list[Event]:
+    """For pages where each event is a block of the form
+         <heading>Title</heading> ... <strong>Date:</strong> November 6, 2026
+         <strong>Location:</strong> Venue, City
+    The title is the nearest heading above the Date line; the link is the first
+    registration / event link below it. Items dated in the past are kept here
+    and removed later by the page's future-only filter."""
+    resp = fetch(events_url)
+    if not resp:
+        return []
+    soup = BeautifulSoup(resp.text, "html.parser")
+    events, seen = [], set()
+    n_date_nodes = 0
+    for strong in soup.find_all(["strong", "b"]):
+        if not re.match(r"^\s*Date\s*:?\s*$", strong.get_text()):
+            continue
+        n_date_nodes += 1
+        parent = strong.parent
+        nxt = parent.find_next_sibling()
+        combined = parent.get_text(" ", strip=True)
+        if nxt is not None:
+            combined += " " + nxt.get_text(" ", strip=True)[:160]
+        dm = re.search(r"Date\s*:\s*(.*?)(?=Location\s*:|$)", combined)
+        lm = re.search(r"Location\s*:\s*(.*)$", combined)
+        if not dm:
+            continue
+        date_raw = dm.group(1).strip()
+        date_clean = re.sub(r"(\d)(?:st|nd|rd|th)\b", r"\1", date_raw)
+        if not re.search(r"\b20\d\d\b", date_clean):
+            continue  # require an explicit year; never guess one
+        date_parsed = try_parse_date(date_clean)
+        location_raw = (lm.group(1).strip() if lm else "")[:160]
+
+        title = ""
+        for h in strong.find_all_previous(["h1", "h2", "h3", "h4"]):
+            t = re.sub(r"\s+", " ", h.get_text(" ", strip=True))
+            if len(t) >= 4 and t.lower() not in _JUNK_HEADINGS:
+                title = t
+                break
+        if not title:
+            continue
+
+        url = events_url
+        for a in strong.find_all_next("a", limit=25):
+            href = a.get("href", "")
+            if re.search(r"eventbrite|zeffy|luma\.com|lu\.ma|/events/", href, re.I):
+                url = urljoin(events_url, href)
+                break
+
+        key = (date_parsed, title.lower()[:25])
+        if key in seen:
+            continue
+        seen.add(key)
+        events.append(Event(
+            chamber=chamber_name, title=title, date_raw=date_raw,
+            date_parsed=date_parsed, url=url, source_strategy="custom_dateloc",
+            location_raw=location_raw,
+        ))
+    print(f"    [dateloc debug] 'Date:' markers found={n_date_nodes}, events built={len(events)}")
+    return events
+
+
+# ---------- Strategy: Luma public calendar page (e.g. luma.com/SlovakPRO) ----------
+
+def strategy_luma_calendar(chamber_name: str, calendar_url: str) -> list[Event]:
+    """Luma's public calendar page ships all of its events as JSON inside the
+    page (a <script id="__NEXT_DATA__"> block), so no JavaScript is needed.
+    Each event has: name, start_at (UTC), timezone, url (a short slug),
+    location_type ('offline'/'online') and geo_address_info (city, region...)."""
+    from zoneinfo import ZoneInfo
+    from datetime import timezone as _tz
+    resp = fetch(calendar_url)
+    if not resp:
+        return []
+    m = re.search(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', resp.text, re.S)
+    if not m:
+        print("    [luma-calendar debug] no __NEXT_DATA__ block found")
+        return []
+    try:
+        data = json.loads(m.group(1))
+    except ValueError:
+        print("    [luma-calendar debug] __NEXT_DATA__ was not valid JSON")
+        return []
+
+    raw_events = []
+
+    def walk(o):
+        if isinstance(o, dict):
+            if o.get("name") and o.get("start_at") and o.get("url"):
+                raw_events.append(o)
+            for v in o.values():
+                walk(v)
+        elif isinstance(o, list):
+            for v in o:
+                walk(v)
+    walk(data)
+
+    events, seen = [], set()
+    for ev in raw_events:
+        key = ev.get("api_id") or (ev["name"], ev["start_at"])
+        if key in seen:
+            continue
+        seen.add(key)
+        try:
+            start = datetime.fromisoformat(ev["start_at"].replace("Z", "+00:00"))
+            tz = ev.get("timezone")
+            local = start.astimezone(ZoneInfo(tz)) if tz else start
+            date_parsed = local.date().isoformat()
+        except Exception:
+            date_parsed = try_parse_date(ev["start_at"])
+        geo = ev.get("geo_address_info") or {}
+        if ev.get("location_type") == "online":
+            loc = "Online"
+        else:
+            loc = ", ".join(str(geo.get(k)) for k in ("address", "city", "region", "country") if geo.get(k))
+        slug = str(ev["url"]).strip("/")
+        events.append(Event(
+            chamber=chamber_name, title=str(ev["name"]).strip(), date_raw=ev["start_at"],
+            date_parsed=date_parsed, url=f"https://luma.com/{slug}",
+            source_strategy="luma_calendar", location_raw=loc[:300],
+        ))
+    print(f"    [luma-calendar debug] events found={len(events)}")
+    return events
+
+
+# ---------- Strategy: date line + title, no year (e.g. SACC-SF) ----------
+
+_MONTHS = ("January|February|March|April|May|June|July|August|September|October|"
+           "November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec")
+_DATELINE = re.compile(rf"^\s*({_MONTHS})\.?\s+(\d{{1,2}})(?:\s*[-\u2013\u2014]\s*(?:{_MONTHS})?\.?\s*\d{{1,2}})?\s*$", re.I)
+
+
+def _infer_year(month_day: str, today=None, lookback_days: int = 60) -> Optional[str]:
+    """A date written without a year ('October 27'): assume the current year,
+    unless that date is more than `lookback_days` in the past, in which case it
+    must mean next year. (Use a short lookback for lists of upcoming events.)"""
+    from datetime import timedelta
+    today = today or datetime.now().date()
+    try:
+        d = dateparser.parse(f"{month_day} {today.year}", fuzzy=True).date()
+    except (ValueError, OverflowError):
+        return None
+    if d < today - timedelta(days=lookback_days):
+        d = d.replace(year=today.year + 1)
+    return d.isoformat()
+
+
+def strategy_custom_dateline(chamber_name: str, events_url: str) -> list[Event]:
+    """For pages that show each event as a short date line with no year
+    ('October 28-29') immediately followed by a heading with the title."""
+    resp = fetch(events_url)
+    if not resp:
+        return []
+    soup = BeautifulSoup(resp.text, "html.parser")
+    events, seen = [], set()
+    n_lines = 0
+    for node in soup.find_all(["div", "p", "span"]):
+        if node.find(["div", "p", "h1", "h2", "h3", "h4"]):
+            continue  # only leaf-ish elements
+        txt = node.get_text(" ", strip=True)
+        m = _DATELINE.match(txt)
+        if not m:
+            continue
+        n_lines += 1
+        heading = node.find_next_sibling(["h1", "h2", "h3", "h4"])
+        if heading is None:
+            heading = node.find_next(["h1", "h2", "h3", "h4"])
+        if heading is None:
+            continue
+        title = re.sub(r"\s+", " ", heading.get_text(" ", strip=True))
+        if len(title) < 4:
+            continue
+        start_md = f"{m.group(1)} {m.group(2)}"
+        date_parsed = _infer_year(start_md)
+        if not date_parsed:
+            continue
+        url = events_url
+        for a in heading.find_all_next("a", limit=6):
+            href = a.get("href", "")
+            if href and not href.startswith(("#", "mailto:", "tel:")):
+                url = urljoin(events_url, href)
+                break
+        key = (date_parsed, title.lower()[:25])
+        if key in seen:
+            continue
+        seen.add(key)
+        events.append(Event(
+            chamber=chamber_name, title=title, date_raw=txt, date_parsed=date_parsed,
+            url=url, source_strategy="custom_dateline", location_raw="",
+        ))
+    print(f"    [dateline debug] date lines found={n_lines}, events built={len(events)}")
+    return events
+
+
+# ---------- Strategy: INBA "upcoming-event" section (Bricks builder site) ----------
+
+def strategy_custom_inba(chamber_name: str, events_url: str) -> list[Event]:
+    """irishnetworkbayarea.com/events puts the next event in a section with
+    class 'upcoming-event': an <h2> title, a paragraph like 'October 28th at 6pm',
+    a paragraph with the address, and a 'Register now' link. Past events are
+    listed further down and are not read."""
+    resp = fetch(events_url)
+    if not resp:
+        return []
+    soup = BeautifulSoup(resp.text, "html.parser")
+    events = []
+    for sec in soup.select('section[class*="upcoming-event"]'):
+        h = sec.find(["h1", "h2", "h3"])
+        if not h:
+            continue
+        title = re.sub(r"\s+", " ", h.get_text(" ", strip=True))
+        date_p = loc_p = None
+        for p in sec.find_all("p"):
+            t = p.get_text(" ", strip=True)
+            if date_p is None and re.match(rf"^({_MONTHS})\.?\s+\d{{1,2}}", t, re.I):
+                date_p = t
+            elif date_p is not None and loc_p is None and 3 < len(t) < 120:
+                loc_p = t
+        if not date_p:
+            continue
+        m = re.match(rf"^({_MONTHS})\.?\s+(\d{{1,2}})", date_p, re.I)
+        date_parsed = _infer_year(f"{m.group(1)} {m.group(2)}", lookback_days=7)
+        url = events_url
+        for a in sec.find_all("a"):
+            if re.search(r"luma|lu\.ma|eventbrite|register", a.get_text(" ") + a.get("href", ""), re.I):
+                url = urljoin(events_url, a.get("href", events_url))
+                break
+        events.append(Event(
+            chamber=chamber_name, title=title, date_raw=date_p, date_parsed=date_parsed,
+            url=url, source_strategy="custom_inba", location_raw=loc_p or "",
+        ))
+    print(f"    [inba debug] events built={len(events)}")
+    return events
+
+
+# ---------- Strategy: Import-Eventbrite-Events plugin lists (e.g. Swiss-American) ----------
+
+def strategy_custom_iee(chamber_name: str, events_url: str) -> list[Event]:
+    """WordPress pages built with the Eventbrite importer plugin: each event is a
+    block with class 'iee_event' containing .month, .date, .event_title and
+    .event_address. Events after a 'Past Events' heading are skipped, because
+    their dates carry no year."""
+    from bs4 import Tag, NavigableString
+    resp = fetch(events_url)
+    if not resp:
+        return []
+    soup = BeautifulSoup(resp.text, "html.parser")
+    events, past = [], False
+    for el in soup.descendants:
+        if isinstance(el, NavigableString):
+            if re.match(r"^\s*Past Events\s*$", str(el), re.I):
+                past = True
+            continue
+        if not isinstance(el, Tag) or past:
+            continue
+        if "iee_event" not in (el.get("class") or []):
+            continue
+        month = el.select_one(".month")
+        day = el.select_one(".date")
+        title_el = el.select_one(".event_title")
+        if not (month and day and title_el):
+            continue
+        date_parsed = _infer_year(f"{month.get_text(strip=True)} {day.get_text(strip=True)}", lookback_days=7)
+        addr = el.select_one(".event_address")
+        a = el.find("a", href=True)
+        events.append(Event(
+            chamber=chamber_name, title=re.sub(r"\s+", " ", title_el.get_text(" ", strip=True)),
+            date_raw=f"{month.get_text(strip=True)} {day.get_text(strip=True)}",
+            date_parsed=date_parsed, url=urljoin(events_url, a["href"]) if a else events_url,
+            source_strategy="custom_iee",
+            location_raw=re.sub(r"\s+", " ", addr.get_text(" ", strip=True)) if addr else "",
+        ))
+    print(f"    [iee debug] upcoming events built={len(events)}")
+    return events
 
 
 # ---------- Strategy: GrowthZone calendar platforms (e.g. GABA) ----------
@@ -701,7 +987,31 @@ def scrape_chamber(chamber: dict) -> tuple[list[Event], str]:
         if events:
             return events, "custom_facc"
 
+    if platform == "custom_dateloc":
+        events = strategy_custom_dateloc(name, events_url)
+        if events:
+            return events, "custom_dateloc"
+
+    if platform == "custom_inba":
+        events = strategy_custom_inba(name, events_url)
+        if events:
+            return events, "custom_inba"
+
+    if platform == "custom_iee":
+        events = strategy_custom_iee(name, events_url)
+        if events:
+            return events, "custom_iee"
+
+    if platform == "custom_dateline":
+        events = strategy_custom_dateline(name, events_url)
+        if events:
+            return events, "custom_dateline"
+
     if platform == "custom_luma":
+        if chamber.get("luma_url"):
+            events = strategy_luma_calendar(name, chamber["luma_url"])
+            if events:
+                return events, "luma_calendar"
         events = strategy_custom_luma(name, events_url)
         if events:
             return events, "custom_luma"

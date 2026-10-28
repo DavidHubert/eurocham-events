@@ -40,11 +40,12 @@ chambers:
   - name: California Spain Chamber of Commerce
     homepage: https://www.californiaspainchamber.org
     events_url: https://www.californiaspainchamber.org/events-chamber/
-    platform: auto
+    platform: custom_dateloc
+    assume_bay_area: true
 
   - name: CzechInvest
     homepage: https://czechinvest.gov.cz
-    events_url: https://czechinvest.gov.cz/en/events
+    events_url: https://czechinvest.gov.cz/en/Homepage/Events
     platform: auto
 
   - name: Danish American Chamber of Commerce (DACC)
@@ -70,13 +71,14 @@ chambers:
 
   - name: Hungarian American Chamber of Commerce (HACC)
     homepage: https://www.amhuchamber.com
-    events_url: https://www.amhuchamber.com/events
+    events_url: https://amhuchamber.com/events/
     platform: auto
 
   - name: Irish Network Bay Area (INBA)
     homepage: https://irishnetworkbayarea.com
     events_url: https://irishnetworkbayarea.com/events
-    platform: auto
+    platform: custom_inba
+    assume_bay_area: true
 
   - name: Open Austria
     homepage: https://www.advantageaustria.org/us/Startseite.en.html
@@ -97,16 +99,18 @@ chambers:
     homepage: https://www.slovakpro.org
     events_url: https://www.slovakpro.org/luma
     platform: custom_luma
+    luma_url: https://luma.com/SlovakPRO
 
   - name: Swedish American Chamber of Commerce (SACC-SF/SV)
     homepage: https://www.sacc-sf.org
     events_url: https://www.sacc-sf.org/events/upcoming-events
-    platform: auto
+    platform: custom_dateline
+    assume_bay_area: true
 
   - name: Swiss-American Chamber of Commerce
     homepage: https://www.saccsf.com
     events_url: https://www.saccsf.com/events
-    platform: auto
+    platform: custom_iee
     assume_bay_area: true
 
   - name: US-Polish Trade Council (USPTC)
