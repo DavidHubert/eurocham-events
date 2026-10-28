@@ -160,13 +160,20 @@ def try_parse_date(text: str) -> Optional[str]:
         return None
 
 
-def fetch(url: str) -> Optional[requests.Response]:
-    try:
-        resp = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
-        if resp.status_code == 200:
-            return resp
-    except requests.RequestException as e:
-        print(f"    [fetch error] {url}: {e}", file=sys.stderr)
+def fetch(url: str, attempts: int = 3) -> Optional[requests.Response]:
+    """GET a page, retrying a couple of times: chamber sites occasionally answer
+    a first request with an error or a timeout and succeed a moment later."""
+    import time
+    for i in range(attempts):
+        try:
+            resp = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
+            if resp.status_code == 200:
+                return resp
+            print(f"    [fetch status {resp.status_code}] {url} (attempt {i + 1}/{attempts})", file=sys.stderr)
+        except requests.RequestException as e:
+            print(f"    [fetch error] {url}: {e} (attempt {i + 1}/{attempts})", file=sys.stderr)
+        if i < attempts - 1:
+            time.sleep(3 * (i + 1))
     return None
 
 
