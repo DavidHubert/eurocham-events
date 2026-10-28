@@ -31,6 +31,7 @@ chambers:
     homepage: https://babcsf.org
     events_url: https://babcsf.org/events
     platform: auto
+    assume_bay_area: true
 
   - name: Business Association Italy America (BAIA)
     homepage: https://www.baia-network.org

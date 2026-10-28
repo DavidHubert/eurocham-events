@@ -110,6 +110,12 @@ def run_website_scraper():
     return events
 
 
+# Newsletter senders (the part of the sender address before ".org"/".com") whose
+# events are always in the Bay Area, whatever the newsletter text says. This is
+# the newsletter equivalent of "assume_bay_area: true" in chambers.yaml.
+ALWAYS_BAY_AREA_SENDERS = {"babcsf", "gaba-network", "saccsf", "sacc-sf", "irishnetworkbayarea"}
+
+
 def run_newsletter_pipeline():
     if not GMAIL_AVAILABLE:
         return []
@@ -123,6 +129,8 @@ def run_newsletter_pipeline():
             text=msg["plaintextBody"],
         )
         for e in found:
+            if chamber in ALWAYS_BAY_AREA_SENDERS and e.region not in ("bay_area", "virtual"):
+                e.region = "bay_area"
             if e.region in ("bay_area", "virtual"):
                 events.append({
                     "chamber": e.chamber, "title": e.title, "date_raw": e.date_raw,
