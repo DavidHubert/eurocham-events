@@ -41,7 +41,7 @@ FULL_PAGE_URL = "https://davidhubert.github.io/eurocham-events/"
 
 # How many events the summary renders (the embed shows 3 by default; the
 # address can ask for fewer or more, up to this number, with ?n=5).
-SUMMARY_MAX = 8
+SUMMARY_MAX = 10
 SUMMARY_DEFAULT = 3
 
 # Short names shown on the pages. First matching fragment wins.
@@ -162,11 +162,23 @@ def dedupe(events: list[dict]) -> list[dict]:
     return list(seen.values())
 
 
+# Titles that are page furniture, not events (agenda lines such as
+# "9:00 - 9:05 AM | Welcome", section headings). Dropped as a safety net.
+NOT_AN_EVENT = re.compile(
+    r"^\s*\d{1,2}(:\d{2})?\s*(am|pm)?\s*[-\u2013\u2014|]|"
+    r"^\s*(agenda|speakers|agenda & speakers|register|registration|welcome|coffee break|"
+    r"networking|upcoming events|past events|events|menu|home|contact)\s*$",
+    re.IGNORECASE,
+)
+
+
 def filter_future(events: list[dict]) -> list[dict]:
     """Keep only events dated today or later. Events with no parseable
     date are dropped, since we can't confirm they're upcoming."""
     today = datetime.now(timezone.utc).date().isoformat()
-    return [e for e in events if e.get("date_parsed") and e["date_parsed"] >= today]
+    return [e for e in events
+            if e.get("date_parsed") and e["date_parsed"] >= today
+            and not NOT_AN_EVENT.search(re.sub(r"<[^>]+>", " ", e.get("title", "")))]
 
 
 # ------------------------------------------------------ display-text cleaning
@@ -305,13 +317,26 @@ SUMMARY_PAGE = """<!DOCTYPE html>
 <body>
 {items_html}
 <script>
-  /* ?n=5 shows five events, ?excerpt=0 hides the one-line description */
+  /* The page is rebuilt on a schedule, but visitors can load it days later.
+     So the browser hides events that have already passed (using the visitor's
+     own date) and shows the first n that remain.
+     ?n=5 shows five events, ?excerpt=0 hides the one-line description. */
   (function () {{
     try {{
       var q = new URLSearchParams(location.search);
       var n = parseInt(q.get('n'), 10) || {default_n};
-      var items = document.querySelectorAll('li[data-i]');
-      items.forEach(function (li) {{ li.style.display = (+li.dataset.i >= n) ? 'none' : ''; }});
+      var d = new Date();
+      var today = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      var shown = 0;
+      document.querySelectorAll('li[data-date]').forEach(function (li) {{
+        var past = li.getAttribute('data-date') < today;
+        if (past || shown >= n) {{ li.style.display = 'none'; }}
+        else {{ li.style.display = ''; shown++; }}
+      }});
+      if (shown === 0) {{
+        var e = document.getElementById('none-left');
+        if (e) e.style.display = 'block';
+      }}
       if (q.get('excerpt') === '0') {{
         document.querySelectorAll('.excerpt').forEach(function (p) {{ p.style.display = 'none'; }});
       }}
@@ -322,7 +347,7 @@ SUMMARY_PAGE = """<!DOCTYPE html>
 </html>
 """
 
-SUMMARY_ITEM = """<li data-i="{i}"{hidden}>
+SUMMARY_ITEM = """<li data-date="{date}"{hidden}>
   <div class="date">{date_display}</div>
   {title_html}
   {excerpt_html}
@@ -350,13 +375,31 @@ FULL_PAGE = """<!DOCTYPE html>
 </style>
 </head>
 <body>
-<p class="updated">{count} upcoming Bay Area events from our member chambers · updated {updated}</p>
+<p class="updated"><span id="count">{count}</span> upcoming Bay Area events from our member chambers · updated {updated}</p>
 {events_html}
+<p class="empty" id="none-left" style="display:none">No upcoming Bay Area events found right now.</p>
+<script>
+  /* Hide events that have already passed, using the visitor's own date, so the
+     list stays correct between scheduled rebuilds. */
+  (function () {{
+    try {{
+      var d = new Date();
+      var today = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      var shown = 0;
+      document.querySelectorAll('.event[data-date]').forEach(function (el) {{
+        if (el.getAttribute('data-date') < today) {{ el.style.display = 'none'; }} else {{ shown++; }}
+      }});
+      var c = document.getElementById('count');
+      if (c) c.textContent = shown;
+      if (shown === 0) {{ var e = document.getElementById('none-left'); if (e) e.style.display = 'block'; }}
+    }} catch (e) {{}}
+  }})();
+</script>
 </body>
 </html>
 """
 
-FULL_EVENT = """<div class="event">
+FULL_EVENT = """<div class="event" data-date="{date}">
   <div class="event-date">{date_display}</div>
   <div class="event-title">{title_html}</div>
   {excerpt_html}
@@ -378,7 +421,7 @@ def render_summary(items: list[dict]) -> str:
             excerpt_html = (f'<p class="excerpt">{esc(e["excerpt"])}</p>'
                             if e["excerpt"] else "")
             lis.append(SUMMARY_ITEM.format(
-                i=i,
+                date=esc(e["date"]),
                 hidden=' style="display:none"' if i >= SUMMARY_DEFAULT else "",
                 date_display=esc(e["date_display"]),
                 title_html=title_html,
@@ -386,6 +429,7 @@ def render_summary(items: list[dict]) -> str:
                 chamber=esc(e["chamber"]),
             ))
         body = "<ul>\n" + "\n".join(lis) + "\n</ul>"
+    body += '\n<p class="empty" id="none-left" style="display:none">No upcoming events listed right now.</p>'
     body += (f'\n<div class="more"><a href="{esc(FULL_PAGE_URL)}" target="_top">'
              f'View all events →</a></div>')
     return SUMMARY_PAGE.format(base_css=BASE_CSS, items_html=body, default_n=SUMMARY_DEFAULT)
@@ -405,7 +449,7 @@ def render_full(items: list[dict]) -> str:
                 link_html = ""
             excerpt_html = f'<p class="event-excerpt">{esc(e["excerpt"])}</p>' if e["excerpt"] else ""
             blocks.append(FULL_EVENT.format(
-                date_display=esc(e["date_display"]), title_html=title_html,
+                date=esc(e["date"]), date_display=esc(e["date_display"]), title_html=title_html,
                 excerpt_html=excerpt_html, chamber=esc(e["chamber"]), link_html=link_html,
             ))
         events_html = "\n".join(blocks)
