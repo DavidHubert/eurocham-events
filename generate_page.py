@@ -120,14 +120,18 @@ def run_newsletter_pipeline():
     if not GMAIL_AVAILABLE:
         return []
     events = []
-    for msg in fetch_newsletters():
+    messages = fetch_newsletters()
+    print(f"Newsletters found in Gmail: {len(messages)}")
+    for msg in messages:
         chamber = msg["sender"].split("@")[-1].split(">")[0].split(".")[0]
         found = extract_events_from_text(
             chamber=chamber,
             source_subject=msg["subject"],
             source_date=msg["date"],
             text=msg["plaintextBody"],
+            html=msg.get("htmlBody", ""),
         )
+        print(f"  {chamber}: \"{msg['subject'][:60]}\" -> {len(found)} events")
         for e in found:
             if chamber in ALWAYS_BAY_AREA_SENDERS and e.region not in ("bay_area", "virtual"):
                 e.region = "bay_area"
@@ -135,7 +139,7 @@ def run_newsletter_pipeline():
                 events.append({
                     "chamber": e.chamber, "title": e.title, "date_raw": e.date_raw,
                     "date_parsed": e.date_parsed, "location_raw": e.location_raw,
-                    "region": e.region, "url": "", "source_detail": "Newsletter",
+                    "region": e.region, "url": getattr(e, "url", ""), "source_detail": "Newsletter",
                 })
     return events
 

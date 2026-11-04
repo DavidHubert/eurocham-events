@@ -69,8 +69,24 @@ def _extract_plaintext(payload) -> str:
     return ""
 
 
+def _extract_html(payload) -> str:
+    """The text/html part of a message (kept so links can be read), or ''."""
+    if payload.get("mimeType") == "text/html" and "data" in payload.get("body", {}):
+        return base64.urlsafe_b64decode(payload["body"]["data"]).decode("utf-8", errors="ignore")
+    for part in payload.get("parts", []):
+        h = _extract_html(part)
+        if h:
+            return h
+    return ""
+
+
 def fetch_newsletters(days_back: int = 10) -> list[dict]:
     service = get_gmail_service()
+    try:
+        who = service.users().getProfile(userId="me").execute().get("emailAddress", "unknown")
+        print(f"Reading newsletters from mailbox: {who}")
+    except Exception as e:  # never let a logging line stop the run
+        print(f"Could not confirm which mailbox is being read: {e}")
     query = build_query(days_back)
 
     results = service.users().messages().list(userId="me", q=query, maxResults=50).execute()
@@ -85,6 +101,7 @@ def fetch_newsletters(days_back: int = 10) -> list[dict]:
             "subject": headers.get("Subject", ""),
             "date": headers.get("Date", ""),
             "plaintextBody": _extract_plaintext(msg["payload"]),
+            "htmlBody": _extract_html(msg["payload"]),
         })
     return out
 
