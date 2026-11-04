@@ -144,6 +144,41 @@ def run_newsletter_pipeline():
     return events
 
 
+def load_manual_events() -> list[dict]:
+    """Hand-entered events from manual_events.yaml (optional file)."""
+    path = Path(__file__).parent / "manual_events.yaml"
+    if not path.exists():
+        return []
+    try:
+        import yaml
+        data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    except Exception as ex:
+        print(f"Could not read manual_events.yaml: {ex}")
+        return []
+    out = []
+    for m in data.get("events", []):
+        d = str(m.get("date", "")).strip()
+        if not d or not m.get("title"):
+            continue
+        out.append({
+            "chamber": m.get("chamber", ""), "title": m["title"], "date_raw": d,
+            "date_parsed": d, "location_raw": " | ".join(
+                x for x in (m.get("location", ""), m.get("details", "")) if x),
+            "region": "bay_area", "url": m.get("url", ""), "source_detail": "Manual",
+        })
+    print(f"Manual events loaded: {len(out)}")
+    return out
+
+
+def merge_with_manual(auto: list[dict], manual: list[dict]) -> list[dict]:
+    """Hand-entered events win: an automatic event with the same date and the
+    same chamber is dropped, so a later newsletter never duplicates them."""
+    taken = {(m["date_parsed"], short_chamber(m.get("chamber", ""))) for m in manual}
+    kept = [e for e in auto
+            if (e.get("date_parsed"), short_chamber(e.get("chamber", ""))) not in taken]
+    return manual + kept
+
+
 def dedupe(events: list[dict]) -> list[dict]:
     """Two events count as the same if they share a date and enough of
     their title in common — catches joint events announced by multiple
@@ -468,7 +503,7 @@ def render_full(items: list[dict]) -> str:
 def main():
     website_events = run_website_scraper()
     newsletter_events = run_newsletter_pipeline()
-    merged = dedupe(website_events + newsletter_events)
+    merged = merge_with_manual(dedupe(website_events + newsletter_events), load_manual_events())
     items = prepare(merged)
 
     docs_dir = Path(__file__).parent / "docs"

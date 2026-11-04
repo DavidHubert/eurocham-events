@@ -1,0 +1,51 @@
+# Events entered by hand. They appear on the page until their date passes
+# (past ones disappear automatically, so you never need to delete them).
+# If a newsletter later announces the same event on the same date for the same
+# chamber, the hand-entered version is used and the newsletter copy is dropped,
+# so nothing shows twice.
+#
+# To add one, copy a block below and change the fields. Dates are YYYY-MM-DD.
+# 'details' is the short description shown under the title.
+events:
+  - chamber: GABA
+    title: "GABA Women Fall Meet"
+    date: 2026-11-05
+    location: Palo Alto
+    details: "Thu 5:30-8 PM. A relaxed fall evening with pumpkin soup and conversation for the German-American business community. All welcome."
+    url: "https://members.gaba-network.org/norcal-events"
+  - chamber: GABA
+    title: "Pegasus Startup World Cup 2026 Grand Finale"
+    date: 2026-11-06
+    location: San Francisco
+    details: "9 AM-6 PM. The world's largest startup pitch competition, with a $1M prize. GABA members get discounted tickets."
+    url: "https://members.gaba-network.org/norcal-events"
+  - chamber: GABA
+    title: "The Future of Powering AI"
+    date: 2026-11-10
+    location: Mountain View
+    details: "6-8 PM. Panel on energy for AI, co-organized with JCCNC, Keizai Silicon Valley, JHTC and GABA."
+    url: "https://members.gaba-network.org/norcal-events"
+  - chamber: GABA
+    title: "Gänsebraten Essen (German Goose Dinner)"
+    date: 2026-11-15
+    location: Shelby's Restaurant, Orinda
+    details: "6 PM. Traditional German holiday goose dinner organized by the Excelsior German Center. Registration closes November 8."
+    url: "https://members.gaba-network.org/norcal-events"
+  - chamber: GABA
+    title: "Global Business Outlook 2027"
+    date: 2026-12-01
+    location: San Francisco
+    details: "6 PM. Economic outlook after the US midterms, with Germany Trade & Invest and Open Austria."
+    url: "https://members.gaba-network.org/norcal-events"
+  - chamber: GABA
+    title: "East Bay Weihnachtsmarkt"
+    date: 2026-12-05
+    location: Oakland
+    details: "1-7 PM. Traditional German Christmas market on MacArthur Boulevard, organized by the Excelsior German Center."
+    url: "https://members.gaba-network.org/norcal-events"
+  - chamber: GABA
+    title: "GISSV German Holiday Market"
+    date: 2026-12-12
+    location: Mountain View
+    details: "11 AM-9 PM. German winter market in downtown Mountain View run by the German International School of Silicon Valley."
+    url: "https://members.gaba-network.org/norcal-events"
