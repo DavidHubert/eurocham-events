@@ -2,6 +2,15 @@
   {
     "date": "2026-11-05",
     "date_display": "Thu, Nov 5, 2026",
+    "title": "GABA Women Fall Meet",
+    "excerpt": "Thu 5:30-8 PM. A relaxed fall evening with pumpkin soup and conversation for the German-American business community. All welcome.",
+    "chamber": "GABA",
+    "url": "https://members.gaba-network.org/norcal-events",
+    "source": "Manual"
+  },
+  {
+    "date": "2026-11-05",
+    "date_display": "Thu, Nov 5, 2026",
     "title": "Shaping the AI wave: Datacenters and the race for sustainable scale",
     "excerpt": "Committee Planisware North America · San Francisco Join us for a forward-looking conversation on scaling AI sustainably",
     "chamber": "FACC",
@@ -16,6 +25,15 @@
     "chamber": "Swiss-American Chamber",
     "url": "https://www.eventbrite.com/e/members-only-event-networking-reception-with-dr-rahul-sahgal-tickets-2003161204085",
     "source": "Website"
+  },
+  {
+    "date": "2026-11-06",
+    "date_display": "Fri, Nov 6, 2026",
+    "title": "Pegasus Startup World Cup 2026 Grand Finale",
+    "excerpt": "9 AM-6 PM. The world's largest startup pitch competition, with a $1M prize. GABA members get discounted tickets.",
+    "chamber": "GABA",
+    "url": "https://members.gaba-network.org/norcal-events",
+    "source": "Manual"
   },
   {
     "date": "2026-11-06",
@@ -45,6 +63,15 @@
     "source": "Website"
   },
   {
+    "date": "2026-11-10",
+    "date_display": "Tue, Nov 10, 2026",
+    "title": "The Future of Powering AI",
+    "excerpt": "6-8 PM. Panel on energy for AI, co-organized with JCCNC, Keizai Silicon Valley, JHTC and GABA.",
+    "chamber": "GABA",
+    "url": "https://members.gaba-network.org/norcal-events",
+    "source": "Manual"
+  },
+  {
     "date": "2026-11-12",
     "date_display": "Thu, Nov 12, 2026",
     "title": "Finance Recruiting Workshop (Virtual)",
@@ -54,13 +81,31 @@
     "source": "Website"
   },
   {
+    "date": "2026-11-15",
+    "date_display": "Sun, Nov 15, 2026",
+    "title": "Gänsebraten Essen (German Goose Dinner)",
+    "excerpt": "Shelby's Restaurant, Orinda 6 PM. Traditional German holiday goose dinner organized by the Excelsior German Center. Registration closes .",
+    "chamber": "GABA",
+    "url": "https://members.gaba-network.org/norcal-events",
+    "source": "Manual"
+  },
+  {
     "date": "2026-11-17",
     "date_display": "Tue, Nov 17, 2026",
-    "title": "Zero to Hundred: GTM Vibe Coding Hackathon",
+    "title": "Zero to a Hundred: ​​​​​​​GTM Vibe Coding Hackathon",
     "excerpt": "",
     "chamber": "SACC-SF/SV",
     "url": "https://luma.com/sml53r17",
     "source": "Website"
+  },
+  {
+    "date": "2026-12-01",
+    "date_display": "Tue, Dec 1, 2026",
+    "title": "Global Business Outlook 2027",
+    "excerpt": "6 PM. Economic outlook after the US midterms, with Germany Trade & Invest and Open Austria.",
+    "chamber": "GABA",
+    "url": "https://members.gaba-network.org/norcal-events",
+    "source": "Manual"
   },
   {
     "date": "2026-12-02",
@@ -70,6 +115,15 @@
     "chamber": "FACC",
     "url": "https://www.facccalifornia.com/events/events-calendar/e/event/holiday-sparkle-san-francisco.html",
     "source": "Website"
+  },
+  {
+    "date": "2026-12-05",
+    "date_display": "Sat, Dec 5, 2026",
+    "title": "East Bay Weihnachtsmarkt",
+    "excerpt": "1-7 PM. Traditional German Christmas market on MacArthur Boulevard, organized by the Excelsior German Center.",
+    "chamber": "GABA",
+    "url": "https://members.gaba-network.org/norcal-events",
+    "source": "Manual"
   },
   {
     "date": "2026-12-06",
@@ -117,6 +171,15 @@
     "source": "Website"
   },
   {
+    "date": "2026-12-12",
+    "date_display": "Sat, Dec 12, 2026",
+    "title": "GISSV German Holiday Market",
+    "excerpt": "11 AM-9 PM. German winter market in downtown Mountain View run by the German International School of Silicon Valley.",
+    "chamber": "GABA",
+    "url": "https://members.gaba-network.org/norcal-events",
+    "source": "Manual"
+  },
+  {
     "date": "2026-12-13",
     "date_display": "Sun, Dec 13, 2026",
     "title": "Glögg Mingle",
@@ -138,7 +201,7 @@
     "date": "2027-04-03",
     "date_display": "Sat, Apr 3, 2027",
     "title": "French Gastronomy Festival 2027",
-    "excerpt": "Fair & Exhibition Lycée français de San Francisco · San Francisco Save the Date for the 7th edition of the French Gastronomy Festival",
+    "excerpt": "Fair & Exhibition Lycée français de San Francisco · San Francisco Showcase your French flavors at the French Gastronomy Festival!",
     "chamber": "FACC",
     "url": "https://www.facccalifornia.com/events/events-calendar/e/event/french-gastronomy-festival-2027.html",
     "source": "Website"
