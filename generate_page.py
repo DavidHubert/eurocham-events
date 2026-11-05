@@ -37,7 +37,7 @@ except Exception as e:
 # ---------------------------------------------------------------- settings
 # Where the "View all events" link on the summary points. Once the eurocham.org
 # events page exists, replace this with its address.
-FULL_PAGE_URL = "https://davidhubert.github.io/eurocham-events/"
+FULL_PAGE_URL = "https://www.eurocham.org/member-events"
 
 # How many events the summary renders (the embed shows 3 by default; the
 # address can ask for fewer or more, up to this number, with ?n=5).
@@ -349,7 +349,7 @@ SUMMARY_PAGE = """<!DOCTYPE html>
   .title {{ display: block; font-size: 1rem; font-weight: 600; color: var(--ink); margin: 2px 0 3px; }}
   .excerpt {{ font-size: 0.85rem; color: var(--muted); margin: 0 0 6px;
               white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }}
-  .more {{ padding: 2px 4px 6px; font-size: 0.9rem; font-weight: 600; }}
+  .more {{ padding: 2px 4px 6px; font-size: 1.125rem; font-weight: 600; }}
   .empty {{ color: var(--muted); font-style: italic; padding: 10px 0; }}
 </style>
 </head>
