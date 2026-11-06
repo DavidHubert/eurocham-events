@@ -1,32 +1,5 @@
 [
   {
-    "date": "2026-11-05",
-    "date_display": "Thu, Nov 5, 2026",
-    "title": "GABA Women Fall Meet",
-    "excerpt": "Thu 5:30-8 PM. A relaxed fall evening with pumpkin soup and conversation for the German-American business community. All welcome.",
-    "chamber": "GABA",
-    "url": "https://members.gaba-network.org/norcal-events",
-    "source": "Manual"
-  },
-  {
-    "date": "2026-11-05",
-    "date_display": "Thu, Nov 5, 2026",
-    "title": "Shaping the AI wave: Datacenters and the race for sustainable scale",
-    "excerpt": "Committee Planisware North America · San Francisco Join us for a forward-looking conversation on scaling AI sustainably",
-    "chamber": "FACC",
-    "url": "https://www.facccalifornia.com/events/events-calendar/e/event/shaping-the-ai-wave-datacenters-and-the-race-for-sustainable-scale.html",
-    "source": "Website"
-  },
-  {
-    "date": "2026-11-05",
-    "date_display": "Thu, Nov 5, 2026",
-    "title": "Members Only Event: Networking Reception with Dr. Rahul Sahgal",
-    "excerpt": "Swiss Residence - 455 Sea Cliff Avenue, San Francisco, CA 94121",
-    "chamber": "Swiss-American Chamber",
-    "url": "https://www.eventbrite.com/e/members-only-event-networking-reception-with-dr-rahul-sahgal-tickets-2003161204085",
-    "source": "Website"
-  },
-  {
     "date": "2026-11-06",
     "date_display": "Fri, Nov 6, 2026",
     "title": "Pegasus Startup World Cup 2026 Grand Finale",
@@ -204,6 +177,15 @@
     "excerpt": "Fair & Exhibition Lycée français de San Francisco · San Francisco Showcase your French flavors at the French Gastronomy Festival!",
     "chamber": "FACC",
     "url": "https://www.facccalifornia.com/events/events-calendar/e/event/french-gastronomy-festival-2027.html",
+    "source": "Website"
+  },
+  {
+    "date": "2027-10-28",
+    "date_display": "Thu, Oct 28, 2027",
+    "title": "Making it in America: The Business of Sport",
+    "excerpt": "1 Post St, San Francisco",
+    "chamber": "INBA",
+    "url": "https://luma.com/84es7art",
     "source": "Website"
   }
 ]
