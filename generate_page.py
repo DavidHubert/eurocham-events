@@ -170,6 +170,22 @@ def load_manual_events() -> list[dict]:
     return out
 
 
+def load_excludes() -> list[str]:
+    path = Path(__file__).parent / "manual_events.yaml"
+    try:
+        import yaml
+        data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+        return [str(x).lower() for x in data.get("exclude", []) if x]
+    except Exception:
+        return []
+
+
+def apply_excludes(events: list[dict]) -> list[dict]:
+    bad = load_excludes()
+    return [e for e in events
+            if not any(b in e.get("title", "").lower() for b in bad)]
+
+
 def merge_with_manual(auto: list[dict], manual: list[dict]) -> list[dict]:
     """Hand-entered events win: an automatic event with the same date and the
     same chamber is dropped, so a later newsletter never duplicates them."""
@@ -503,7 +519,7 @@ def render_full(items: list[dict]) -> str:
 def main():
     website_events = run_website_scraper()
     newsletter_events = run_newsletter_pipeline()
-    merged = merge_with_manual(dedupe(website_events + newsletter_events), load_manual_events())
+    merged = apply_excludes(merge_with_manual(dedupe(website_events + newsletter_events), load_manual_events()))
     items = prepare(merged)
 
     docs_dir = Path(__file__).parent / "docs"

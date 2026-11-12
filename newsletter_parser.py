@@ -131,6 +131,14 @@ def _first_sentence(paragraph: str, limit: int = 110) -> str:
     return sentence.rstrip(".")
 
 
+def _ref_date(source_label: str):
+    """The newsletter's own send date, taken from its label, so 'October 13'
+    in an October newsletter means this October, not next year."""
+    from datetime import date
+    m = re.search(r"\((\d{4})-(\d{2})-(\d{2})\)", source_label or "")
+    return date(int(m[1]), int(m[2]), int(m[3])) if m else None
+
+
 def extract_pipe_events(chamber: str, source_label: str, text: str, resolve_titles: bool = True) -> list[NewsletterEvent]:
     """`text` should keep its line breaks (and may contain [[url]] link markers).
     Layout assumed (GABA): [banner link line] / description paragraph(s) /
@@ -141,7 +149,7 @@ def extract_pipe_events(chamber: str, source_label: str, text: str, resolve_titl
     for m in PIPE_EVENT.finditer(text):
         month, day = m.group("month"), m.group("day")
         date_raw = f"{month} {day}"
-        date_parsed = _infer_year(date_raw, lookback_days=7)
+        date_parsed = _infer_year(date_raw, today=_ref_date(source_label), lookback_days=7)
         loc = m.group("loc").strip()
 
         # The block above this event line: starts after the last link-only line
@@ -210,10 +218,28 @@ def _title_before(text: str, idx: int, window: int = 200) -> str:
     return candidate[:180] if candidate else "(untitled event)"
 
 
+_MEMBER_HEAD = re.compile(r"member\s+news(?:\s+(?:and|&amp;|&)\s+events)?", re.IGNORECASE)
+_SECTION_END = re.compile(r"join\s+gaba|become\s+a\s+member|membership\s+info", re.IGNORECASE)
+
+
+def strip_member_section(content: str) -> str:
+    """Remove the 'Member News (and Events)' section: it lists events run by
+    member companies, not by the chamber itself. The section runs from its
+    heading to the 'Join GABA' / membership footer (or the end)."""
+    if not content:
+        return content
+    m = _MEMBER_HEAD.search(content)
+    if not m:
+        return content
+    end = _SECTION_END.search(content, m.end())
+    return content[:m.start()] + (content[end.start():] if end else "")
+
+
 def extract_events_from_text(chamber: str, source_subject: str, source_date: str, text: str,
                              html: str = "") -> list[NewsletterEvent]:
     if not text and not html:
         return []
+    text, html = strip_member_section(text), strip_member_section(html)
     source_label = f"newsletter: {source_subject} ({source_date[:10] if source_date else 'unknown date'})"
 
     # Pattern A: "Month D | time | place" lines (keeps line breaks and links)
