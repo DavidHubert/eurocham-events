@@ -1,23 +1,5 @@
 [
   {
-    "date": "2026-11-09",
-    "date_display": "Mon, Nov 9, 2026",
-    "title": "InnovationCamp BW 2026",
-    "excerpt": "Experience the InnovationCamp: Connect your Baden-Württemberg (BW) business with Silicon Valley’s innovation ecosystem. Gain new insights, actionable solutions, and build a strong network to accelerate your company’s growth and digital…",
-    "chamber": "GACC West",
-    "url": "https://www.gaccwest.com/us/events?event_hub_filter%5Bcategory%5D=20&event_hub_filter%5ByearFilter%5D=all",
-    "source": "Website"
-  },
-  {
-    "date": "2026-11-10",
-    "date_display": "Tue, Nov 10, 2026",
-    "title": "The Future of Powering AI",
-    "excerpt": "6-8 PM. Panel on energy for AI, co-organized with JCCNC, Keizai Silicon Valley, JHTC and GABA.",
-    "chamber": "GABA",
-    "url": "https://members.gaba-network.org/norcal-events",
-    "source": "Manual"
-  },
-  {
     "date": "2026-11-12",
     "date_display": "Thu, Nov 12, 2026",
     "title": "Finance Recruiting Workshop (Virtual)",
@@ -25,15 +7,6 @@
     "chamber": "Slovak Pro",
     "url": "https://luma.com/slovakpro-ol2p",
     "source": "Website"
-  },
-  {
-    "date": "2026-11-15",
-    "date_display": "Sun, Nov 15, 2026",
-    "title": "Gänsebraten Essen (German Goose Dinner)",
-    "excerpt": "Shelby's Restaurant, Orinda 6 PM. Traditional German holiday goose dinner organized by the Excelsior German Center. Registration closes .",
-    "chamber": "GABA",
-    "url": "https://members.gaba-network.org/norcal-events",
-    "source": "Manual"
   },
   {
     "date": "2026-11-17",
@@ -63,13 +36,13 @@
     "source": "Website"
   },
   {
-    "date": "2026-12-05",
-    "date_display": "Sat, Dec 5, 2026",
-    "title": "East Bay Weihnachtsmarkt",
-    "excerpt": "1-7 PM. Traditional German Christmas market on MacArthur Boulevard, organized by the Excelsior German Center.",
-    "chamber": "GABA",
-    "url": "https://members.gaba-network.org/norcal-events",
-    "source": "Manual"
+    "date": "2026-12-03",
+    "date_display": "Thu, Dec 3, 2026",
+    "title": "INBA Christmas Party",
+    "excerpt": "",
+    "chamber": "INBA",
+    "url": "https://luma.com/6ke03uwd",
+    "source": "Website"
   },
   {
     "date": "2026-12-06",
@@ -117,15 +90,6 @@
     "source": "Website"
   },
   {
-    "date": "2026-12-12",
-    "date_display": "Sat, Dec 12, 2026",
-    "title": "GISSV German Holiday Market",
-    "excerpt": "11 AM-9 PM. German winter market in downtown Mountain View run by the German International School of Silicon Valley.",
-    "chamber": "GABA",
-    "url": "https://members.gaba-network.org/norcal-events",
-    "source": "Manual"
-  },
-  {
     "date": "2026-12-13",
     "date_display": "Sun, Dec 13, 2026",
     "title": "Glögg Mingle",
@@ -150,15 +114,6 @@
     "excerpt": "Fair & Exhibition Lycée français de San Francisco · San Francisco Showcase your French flavors at the French Gastronomy Festival!",
     "chamber": "FACC",
     "url": "https://www.facccalifornia.com/events/events-calendar/e/event/french-gastronomy-festival-2027.html",
-    "source": "Website"
-  },
-  {
-    "date": "2027-10-28",
-    "date_display": "Thu, Oct 28, 2027",
-    "title": "Making it in America: The Business of Sport",
-    "excerpt": "1 Post St, San Francisco",
-    "chamber": "INBA",
-    "url": "https://luma.com/84es7art",
     "source": "Website"
   }
 ]
